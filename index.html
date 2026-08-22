@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeyTeck Portfolio — High-Converting UGC Creator Portfolio</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    },
+                    colors: {
+                        brandPink: '#ff2d95',
+                        brandCyan: '#5eead4',
+                        obsidian: '#0b0c10',
+                        cardBg: '#13151c',
+                        cardBorder: '#222634'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            background-color: #0b0c10;
+            color: #ffffff;
+            min-height: 100vh;
+            letter-spacing: 0.01em;
+        }
+        /* 9:16 Aspect Ratio Container */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 177.77%; /* 9:16 aspect ratio */
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #050608;
+        }
+        .video-wrapper video, .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+        /* Glassmorphism Card Hover */
+        .portfolio-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .portfolio-card:hover {
+            transform: translateY(-4px);
+            border-color: #ff2d95;
+            box-shadow: 0 15px 30px -10px rgba(255, 45, 149, 0.25);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-white selection:bg-[#ff2d95] selection:text-black">
+
+    <!-- HIGGSFIELD STYLE TOP ANNOUNCEMENT BANNER -->
+    <div class="bg-gradient-to-r from-[#ff2d95] via-pink-500 to-[#5eead4] text-black font-bold text-xs sm:text-sm py-2 px-4 text-center tracking-wide shadow-md flex items-center justify-center gap-2">
+        <span class="bg-black text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold">COLLAB</span>
+        <span>⚡ Available for Paid Collaborations &amp; Brand Whitelisting</span>
+    </div>
+
+    <!-- NAVIGATION HEADER -->
+    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between border-b border-[#1c1f2b]">
+        <div class="flex items-center gap-3">
+            <img src="logo.png" alt="HeyTeck Logo" class="h-9 w-9 object-contain rounded-xl bg-[#13151c] p-1 border border-[#2a2f42]">
+            <span class="text-xl font-bold tracking-normal">
+                <span class="text-[#ff2d95]">HeyTeck</span> <span class="text-[#5eead4]">Portfolio</span>
+            </span>
+        </div>
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-1.5 bg-[#ff2d95] hover:bg-pink-600 text-black font-semibold text-xs px-4 py-2 rounded-full transition-all shadow-md shadow-pink-500/20 tracking-wide">
+            Work With Me <span class="text-sm font-bold">›</span>
+        </a>
+    </header>
+
+    <!-- SECTION 1: HERO HEADER -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-16 text-center">
+        
+        <div class="text-[#5eead4] font-semibold text-xs sm:text-sm mb-4 tracking-widest uppercase">
+            HeyTeck Direct-Response UGC Studio
+        </div>
+        
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-white tracking-wide leading-tight sm:leading-[1.25] mb-6 max-w-5xl mx-auto">
+            I Create High-Converting UGC Ads<br>That Scale D2C Brands.
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8 font-normal tracking-wide">
+            Direct-Response 9:16 Video Creatives engineered for high Thumb-Stop Ratio, ROAS, and conversions — powered by <strong class="text-[#ff2d95]">HeyTeck AI</strong>.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="#portfolio" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff2d95] hover:bg-pink-600 text-black font-semibold px-8 py-3.5 rounded-full transition-all shadow-lg shadow-pink-500/20 hover:scale-[1.02] text-sm sm:text-base tracking-wide">
+                Explore UGC Videos <span class="text-lg font-bold">›</span>
+            </a>
+            <a href="https://wa.me/919685378469?text=Hi%20HeyTeck%20Portfolio!%20I%20saw%20your%20UGC%20work%20and%20want%20to%20discuss%20a%20project." target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-3.5 rounded-full transition-all shadow-lg shadow-emerald-500/20 hover:scale-[1.02] text-sm sm:text-base tracking-wide">
+                WhatsApp <span class="text-lg font-bold">›</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION 2: NICHE FILTER TABS (PORTFOLIO GRID) -->
+    <section id="portfolio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-[#1a1d29]">
+        <div class="text-center mb-10">
+            <div class="text-[#5eead4] font-semibold text-xs sm:text-sm mb-1 uppercase tracking-wider">Portfolio Showcase</div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-wide mb-3">Direct-Response Creative Portfolio</h2>
+            <p class="text-slate-400 text-sm sm:text-base font-normal tracking-wide">Filter by your brand niche to view high-retention 9:16 vertical video creatives (4 Examples Per Niche).</p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+            <button onclick="filterCategory('all')" id="btn-all" class="filter-btn active bg-[#ff2d95] text-black font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-pink-400 tracking-wide">⚡ All (20 Videos)</button>
+            <button onclick="filterCategory('skincare')" id="btn-skincare" class="filter-btn bg-[#13151c] hover:bg-[#1c202b] text-slate-300 font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-[#222634] tracking-wide">🧴 Skincare & Beauty (4)</button>
+            <button onclick="filterCategory('food')" id="btn-food" class="filter-btn bg-[#13151c] hover:bg-[#1c202b] text-slate-300 font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-[#222634] tracking-wide">🍔 Food & Beverage (4)</button>
+            <button onclick="filterCategory('fashion')" id="btn-fashion" class="filter-btn bg-[#13151c] hover:bg-[#1c202b] text-slate-300 font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-[#222634] tracking-wide">👟 Fashion & Apparel (4)</button>
+            <button onclick="filterCategory('tech')" id="btn-tech" class="filter-btn bg-[#13151c] hover:bg-[#1c202b] text-slate-300 font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-[#222634] tracking-wide">🎧 Tech & Gadgets (4)</button>
+            <button onclick="filterCategory('health')" id="btn-health" class="filter-btn bg-[#13151c] hover:bg-[#1c202b] text-slate-300 font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-[#222634] tracking-wide">🏋️‍♂️ Health & Fitness (4)</button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="portfolio-grid">
+            
+            <!-- CATEGORY 1: SKINCARE & BEAUTY (4 VIDEOS) -->
+            <div class="portfolio-card item-skincare bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-applying-facial-cream-41584-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">GlowBotanicals Co.</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">BEAUTY</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Minimalist Acne Clarifying Serum</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Texture Close-Up • Problem-Agitation • 3-Step Demo
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: Negative Urgency
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 44.2% | ROAS: 3.8x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-skincare bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1608248597261-e4d344716c02?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-young-woman-applying-skincare-product-to-her-face-41577-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">Lumina Skincare</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">BEAUTY</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Hydrating Barrier Repair Moisturizer</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Before & After • Dry Skin Agitation • Micro-Zoom
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: Pattern Interrupt Visual
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 48.9% | ROAS: 4.2x
+                </div>
+            </div>
+
+            <!-- VIDEO 3: MINIMALIST SALICYLIC ACID WITH CINEMATIC AI GENERATED THUMBNAIL POSTER -->
+            <div class="portfolio-card item-skincare bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="minimalist_poster.jpg">
+                            <source src="minimalist_gwr.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">Minimalist</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">BEAUTY</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Salicylic Acid 02% Face Serum</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Clear Skin Journey • Texture &amp; Absorption Test • Glow Check
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Angle: Discovery / Holy Grail ('I Finally Found It')
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 48.5% | ROAS: 4.2x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-skincare bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1556228722-d1191f692025?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-young-woman-washing-her-face-with-water-41578-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">VelvetSkin Co.</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">BEAUTY</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Organic Botanical Face Wash</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ ASMR Foam Pour • Deep Cleanse Demo • Sensitivity Test
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: Visual Disruption
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 46.5% | ROAS: 3.9x
+                </div>
+            </div>
+
+            <!-- CATEGORY 2: FOOD & BEVERAGE -->
+            <div class="portfolio-card item-food bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-pouring-ice-cold-coffee-into-a-glass-42898-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">VibeBrew Coffee</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">FOOD</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Artisanal Cold Brew Energy Elixir</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ ASMR Unboxing • Macro Aesthetic Pour • Taste Test
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: Sonic ASMR Trigger
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 51.4% | ROAS: 5.1x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-food bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1582176647444-1e1a1463087b?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-holding-a-delicious-chocolate-dessert-41525-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">FuelBites Nutrition</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">FOOD</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Protein Chocolate Crunch Bar</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Quick Recipe • Craving Agitation • Macro Crunch
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Angle: Question ('Stop Eating Dry Protein')
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 42.7% | ROAS: 3.5x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-food bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1553530666-ba11a7da3888?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-drinking-fresh-fruit-juice-41570-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">VitalJuice Superfoods</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">FOOD</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Organic Berry Smoothie Mix</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Blender Speed-up • Color Splash • Health Benefits
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: High Contrast Color Pop
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 49.8% | ROAS: 4.4x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-food bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-refreshing-drink-with-ice-cubes-and-lemon-slice-41574-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">FizzHydrate Co.</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">BEVERAGE</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Sparkling Citrus Electrolyte Drink</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Can Pop ASMR • Ice Swirl • Workout Refresh
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: Refreshing Sound Cue
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 47.2% | ROAS: 4.1x
+                </div>
+            </div>
+
+            <!-- CATEGORY 3: FASHION & APPAREL -->
+            <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-stylish-young-woman-posing-in-streetwear-42352-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">Aura Wear</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">FASHION</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Oversized Streetwear Hoodie Drop</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ GRWM • Fit Check • 1 Outfit 3 Ways
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: High Dynamic Transition
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 46.8% | ROAS: 4.0x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-young-man-walking-down-a-street-wearing-trendy-clothes-41566-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">UrbanTrek Co.</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">FASHION</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Water-Resistant Technical Cargo Pants</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Fabric Close-Up • Stress Test • Daily Utility
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Angle: Demonstration ('Water Spill Test')
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 49.3% | ROAS: 4.6x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-doing-stretching-exercises-in-a-park-41561-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">FlexMotion Athletics</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">APPAREL</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Seamless Aesthetic Activewear Set</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Squat Test • Breathable Weave • Gym GRWM
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: Confidence Transformation
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 54.0% | ROAS: 5.3x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-carrying-a-modern-handbag-41565-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">LuxeLeather Studio</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">ACCESSORY</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Minimalist Everyday Tote Bag</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ What's In My Bag • Laptop Test • Strap Comfort
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: Organization Agitation
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 45.1% | ROAS: 3.7x
+                </div>
+            </div>
+
+            <!-- CATEGORY 4: TECH & GADGETS -->
+            <div class="portfolio-card item-tech bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-young-man-putting-on-headphones-41551-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">SonicWave Tech</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">TECH</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Active Noise-Canceling Earbuds</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Feature-to-Benefit • Setup Tutorial • Commute Test
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Angle: Bold Claim ('Throw Away Your AirPods')
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 53.1% | ROAS: 5.4x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-tech bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-using-a-smartphone-in-a-dark-room-41530-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">VoltPulse Gear</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">TECH</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Magnetic Wireless Powerbank</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Durability Test • Comparison • Snap Action
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Angle: Problem-Visual ('Dead Battery Panic')
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 47.5% | ROAS: 4.1x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-tech bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-man-working-on-his-laptop-at-home-41533-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">LuminaDesk Studio</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">GADGET</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Ultra-Wide Desk Setup Lightbar</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Before & After Lighting • Eye Strain Solution • Unboxing
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: Aesthetic Desk Flip
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 50.8% | ROAS: 4.8x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-tech bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-typing-fast-on-a-computer-keyboard-41531-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">KeyCraft Customs</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">TECH</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Ergonomic Mechanical Keyboard</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Typing Sound ASMR • RGB Customization • Wrist Relief
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Retention Angle: Tactile Sound Hook
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 48.6% | ROAS: 4.3x
+                </div>
+            </div>
+
+            <!-- CATEGORY 5: HEALTH & FITNESS -->
+            <div class="portfolio-card item-health bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-doing-stretching-exercises-in-a-park-41561-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">VoltFit Nutrition</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">FITNESS</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Pre-Workout Explosive Energy Powder</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Water Mix ASMR • Energy Jump Cut • Workout Demo
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Angle: Visual Rush / Pattern Interrupt
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 51.8% | ROAS: 4.9x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-health bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-man-exercising-with-dumbbells-41560-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">TheraRelief Tech</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">FITNESS</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Deep Tissue Percussion Massage Gun</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Muscle Relief Close-Up • 3 Speed Demo • Recovery
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Angle: Pain Point Agitation ('Sore Back?')
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 49.6% | ROAS: 4.3x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-health bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-drinking-water-from-a-bottle-41567-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">HydraPulse Co.</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">HEALTH</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Smart Hydration Tracker Water Bottle</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Sip Reminder LED • Hydration Test • Gym Vlog
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Angle: Shock Stat ('80% Dehydrated')
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 46.9% | ROAS: 3.9x
+                </div>
+            </div>
+
+            <div class="portfolio-card item-health bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3">
+                        <video controls playsinline poster="https://images.unsplash.com/photo-1598289431512-b97b0917affc?q=80&w=600&auto=format&fit=crop">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-doing-fitness-exercises-with-resistance-band-41562-large.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[11px] font-semibold text-[#5eead4]">PulseFlex Fitness</span>
+                        <span class="bg-[#5eead4]/10 text-[#5eead4] text-[9px] font-bold px-1.5 py-0.5 rounded-md">FITNESS</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug">Ergonomic Resistance Bands Set</h3>
+                    <div class="bg-[#0b0c10] border border-[#222634] text-slate-300 text-xs p-2 rounded-lg mb-2 font-normal">
+                        ⚡ Home Workout Routine • Durability Test • Portable
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2">
+                        🔥 Hook Angle: Alternative ('Ditch Heavy Weights')
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold p-1.5 rounded-md text-center mt-2">
+                    📈 Thumb-Stop: 53.4% | ROAS: 5.2x
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 5: CONTACT & PLATFORMS -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-[#1a1d29]">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-white tracking-tight mb-3">Get In Touch &amp; Connect</h2>
+            <p class="text-slate-400 text-sm sm:text-base font-normal">Ready to scale your D2C brand with high-performing video ads? Reach out via form or any platform below.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+            
+            <!-- Direct Brief Form -->
+            <div class="lg:col-span-3 bg-[#13151c] border border-[#222634] rounded-3xl p-6 sm:p-8">
+                <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Your Name *</label>
+                        <input type="text" required placeholder="e.g. Alex Johnson" class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Brand Name *</label>
+                        <input type="text" required placeholder="e.g. Lumina Beauty" class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Website / Store URL</label>
+                        <input type="url" placeholder="https://luminabeauty.com" class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Project Details &amp; Requirements</label>
+                        <textarea rows="4" placeholder="Tell us about your target audience, key pain points, and required video concepts..." class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all"></textarea>
+                    </div>
+                    <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-[#ff2d95] hover:bg-pink-600 text-black font-bold py-3.5 rounded-full transition-all shadow-xl shadow-pink-500/20 text-base">
+                        Send Direct Inquiry <span class="text-xl">›</span>
+                    </button>
+                    <div id="form-success" class="hidden bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm font-semibold p-4 rounded-xl text-center">
+                        Thank you! Your message has been submitted successfully. HeyTeck Portfolio team will get back to you within 12 hours.
+                    </div>
+                </form>
+            </div>
+
+            <!-- Quick Connect & Platform Links -->
+            <div class="lg:col-span-2 bg-[#13151c] border border-[#222634] rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">⚡ Direct Contact</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-4 font-normal">Instant response via WhatsApp or Email.</p>
+                    
+                    <div class="space-y-2.5 mb-6">
+                        <!-- WHATSAPP BUTTON -->
+                        <a href="https://wa.me/919685378469?text=Hi%20HeyTeck%20Portfolio!%20I%20saw%20your%20UGC%20work%20and%20want%20to%20discuss%20a%20project." target="_blank" class="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-full transition-all text-sm shadow-md shadow-emerald-600/20 whitespace-nowrap">
+                            💬 WhatsApp <span class="font-bold">›</span>
+                        </a>
+                        <!-- EMAIL BUTTON -->
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nikola44tesla44@gmail.com&su=UGC%20Project%20Inquiry" target="_blank" class="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-full transition-all text-sm shadow-md shadow-blue-600/20 whitespace-nowrap">
+                            ✉️ Email <span class="font-bold">›</span>
+                        </a>
+                    </div>
+
+                    <!-- Freelance & Hire Platforms -->
+                    <h4 class="text-xs font-semibold text-[#5eead4] tracking-wider mb-2.5">💼 Hire On Platforms</h4>
+                    <div class="grid grid-cols-3 gap-2 mb-6">
+                        <a href="https://fiverr.com/heyteckportfolio" target="_blank" class="flex flex-col items-center justify-center p-2.5 bg-emerald-950/30 border border-emerald-500/30 hover:border-emerald-400 rounded-xl text-emerald-400 font-bold text-xs transition-all hover:scale-[1.03]">
+                            <span>💚 Fiverr</span>
+                        </a>
+                        <a href="https://upwork.com/freelancers/heyteckportfolio" target="_blank" class="flex flex-col items-center justify-center p-2.5 bg-emerald-950/30 border border-emerald-500/30 hover:border-emerald-400 rounded-xl text-emerald-400 font-bold text-xs transition-all hover:scale-[1.03]">
+                            <span>💚 Upwork</span>
+                        </a>
+                        <a href="https://contra.com/heyteckportfolio" target="_blank" class="flex flex-col items-center justify-center p-2.5 bg-[#0b0c10] border border-[#222634] hover:border-[#ff2d95] rounded-xl text-[#ff2d95] font-bold text-xs transition-all hover:scale-[1.03]">
+                            <span>🖤 Contra</span>
+                        </a>
+                    </div>
+
+                    <!-- Social Channels -->
+                    <h4 class="text-xs font-semibold text-[#ff2d95] tracking-wider mb-2.5">🌐 Social Media &amp; Channels</h4>
+                    <div class="grid grid-cols-4 gap-2">
+                        <a href="https://instagram.com/heyteckportfolio" target="_blank" class="flex items-center justify-center py-2.5 bg-pink-950/30 border border-pink-500/30 hover:border-pink-400 text-pink-400 font-bold text-xs rounded-xl transition-all hover:scale-[1.03]" title="Instagram">
+                            📸 Insta
+                        </a>
+                        <a href="https://facebook.com/heyteckportfolio" target="_blank" class="flex items-center justify-center py-2.5 bg-blue-950/30 border border-blue-500/30 hover:border-blue-400 text-blue-400 font-bold text-xs rounded-xl transition-all hover:scale-[1.03]" title="Facebook">
+                            📘 FB
+                        </a>
+                        <a href="https://youtube.com/@heyteckportfolio" target="_blank" class="flex items-center justify-center py-2.5 bg-red-950/30 border border-red-500/30 hover:border-red-400 text-red-400 font-bold text-xs rounded-xl transition-all hover:scale-[1.03]" title="YouTube">
+                            🔴 YT
+                        </a>
+                        <a href="https://x.com/heyteckportfolio" target="_blank" class="flex items-center justify-center py-2.5 bg-[#0b0c10] border border-[#222634] hover:border-slate-500 text-slate-300 font-bold text-xs rounded-xl transition-all hover:scale-[1.03]" title="Twitter / X">
+                            🐦 X
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pt-4 mt-4 border-t border-[#1c1f2b] text-[11px] text-slate-400 flex items-center justify-between">
+                    <span>📍 Remote (US, UK, IN)</span>
+                    <span class="text-emerald-400 font-semibold">⚡ Response &lt; 2h</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER COPYRIGHT -->
+    <footer class="border-t border-[#1a1d29] py-8 text-center text-xs text-slate-500">
+        <p>© 2026 <strong class="text-[#ff2d95]">HeyTeck</strong> <strong class="text-[#5eead4]">Portfolio</strong>. All Rights Reserved. Powered by HeyTeck AI Engine.</p>
+    </footer>
+
+    <!-- Category Filter Script -->
+    <script>
+        function filterCategory(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-[#ff2d95]', 'text-black', 'border-pink-400', 'font-semibold');
+                btn.classList.add('bg-[#13151c]', 'text-slate-300', 'border-[#222634]', 'font-medium');
+            });
+            const activeBtn = document.getElementById('btn-' + category);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-[#13151c]', 'text-slate-300', 'border-[#222634]', 'font-medium');
+                activeBtn.classList.add('bg-[#ff2d95]', 'text-black', 'border-pink-400', 'font-semibold');
+            }
+            const cards = document.querySelectorAll('.portfolio-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains('item-' + category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const successDiv = document.getElementById('form-success');
+            if (successDiv) {
+                successDiv.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
