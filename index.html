@@ -21,6 +21,7 @@
                     colors: {
                         brandPink: '#ff2d95',
                         brandCyan: '#5eead4',
+                        higgsYellow: '#ffee00',
                         obsidian: '#0b0c10',
                         cardBg: '#13151c',
                         cardBorder: '#222634'
@@ -87,7 +88,7 @@
         </a>
     </header>
 
-    <!-- SECTION 1: HERO HEADER (UPDATED HEADING & SUBHEADING) -->
+    <!-- SECTION 1: HERO HEADER -->
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-16 text-center">
         
         <div class="text-[#5eead4] font-semibold text-xs sm:text-sm mb-4 tracking-widest uppercase">
@@ -103,7 +104,7 @@
         </p>
     </section>
 
-    <!-- SECTION 2: NICHE FILTER TABS (PORTFOLIO GRID) -->
+    <!-- SECTION 2: NICHE FILTER TABS (SINGLE LINE, HIGGSFIELD YELLOW FONT, REMOVED ALL 20 VIDEOS BUTTON) -->
     <section id="portfolio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-[#1a1d29]">
         <div class="text-center mb-10">
             <div class="text-[#5eead4] font-semibold text-xs sm:text-sm mb-1 uppercase tracking-wider">Portfolio Showcase</div>
@@ -111,13 +112,13 @@
             <p class="text-slate-400 text-sm sm:text-base font-normal tracking-wide">Filter by your brand niche to view high-retention 9:16 vertical video creatives (4 Examples Per Niche).</p>
         </div>
 
-        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
-            <button onclick="filterCategory('all')" id="btn-all" class="filter-btn active bg-[#ff2d95] text-black font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-pink-400 tracking-wide">⚡ All (20 Videos)</button>
-            <button onclick="filterCategory('skincare')" id="btn-skincare" class="filter-btn bg-[#13151c] hover:bg-[#1c202b] text-slate-300 font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-[#222634] tracking-wide">🧴 Skincare & Beauty (4)</button>
-            <button onclick="filterCategory('food')" id="btn-food" class="filter-btn bg-[#13151c] hover:bg-[#1c202b] text-slate-300 font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-[#222634] tracking-wide">🍔 Food & Beverage (4)</button>
-            <button onclick="filterCategory('fashion')" id="btn-fashion" class="filter-btn bg-[#13151c] hover:bg-[#1c202b] text-slate-300 font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-[#222634] tracking-wide">👟 Fashion & Apparel (4)</button>
-            <button onclick="filterCategory('tech')" id="btn-tech" class="filter-btn bg-[#13151c] hover:bg-[#1c202b] text-slate-300 font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-[#222634] tracking-wide">🎧 Tech & Gadgets (4)</button>
-            <button onclick="filterCategory('health')" id="btn-health" class="filter-btn bg-[#13151c] hover:bg-[#1c202b] text-slate-300 font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all border border-[#222634] tracking-wide">🏋️‍♂️ Health & Fitness (4)</button>
+        <!-- 5 NICHE BUTTONS IN SINGLE LINE WITH HIGGSFIELD ELECTRIC YELLOW FONT -->
+        <div class="flex flex-nowrap overflow-x-auto sm:flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 mb-12 py-1 scrollbar-none">
+            <button onclick="filterCategory('skincare')" id="btn-skincare" class="filter-btn active bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] shadow-md shadow-yellow-500/20 whitespace-nowrap">🧴 Skincare & Beauty (4)</button>
+            <button onclick="filterCategory('food')" id="btn-food" class="filter-btn bg-[#13151c] text-[#ffee00] font-semibold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00]/40 hover:border-[#ffee00] hover:bg-[#ffee00]/10 whitespace-nowrap">🍔 Food & Beverage (4)</button>
+            <button onclick="filterCategory('fashion')" id="btn-fashion" class="filter-btn bg-[#13151c] text-[#ffee00] font-semibold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00]/40 hover:border-[#ffee00] hover:bg-[#ffee00]/10 whitespace-nowrap">👟 Fashion & Apparel (4)</button>
+            <button onclick="filterCategory('tech')" id="btn-tech" class="filter-btn bg-[#13151c] text-[#ffee00] font-semibold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00]/40 hover:border-[#ffee00] hover:bg-[#ffee00]/10 whitespace-nowrap">🎧 Tech & Gadgets (4)</button>
+            <button onclick="filterCategory('health')" id="btn-health" class="filter-btn bg-[#13151c] text-[#ffee00] font-semibold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00]/40 hover:border-[#ffee00] hover:bg-[#ffee00]/10 whitespace-nowrap">🏋️‍♂️ Health & Fitness (4)</button>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="portfolio-grid">
@@ -698,7 +699,7 @@
                 </div>
 
                 <div class="pt-4 mt-4 border-t border-[#1c1f2b] text-[11px] text-slate-400 flex items-center justify-between">
-                    <span>📍 Remote (US, UK, IN)</span>
+                    <span>📍 Remote Worldwide</span>
                     <span class="text-emerald-400 font-semibold">⚡ Response &lt; 2h</span>
                 </div>
             </div>
@@ -716,13 +717,13 @@
         function filterCategory(category) {
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {
-                btn.classList.remove('bg-[#ff2d95]', 'text-black', 'border-pink-400', 'font-semibold');
-                btn.classList.add('bg-[#13151c]', 'text-slate-300', 'border-[#222634]', 'font-medium');
+                btn.classList.remove('bg-[#ffee00]', 'text-black', 'border-[#ffee00]', 'shadow-md', 'shadow-yellow-500/20', 'font-bold');
+                btn.classList.add('bg-[#13151c]', 'text-[#ffee00]', 'border-[#ffee00]/40', 'font-semibold');
             });
             const activeBtn = document.getElementById('btn-' + category);
             if (activeBtn) {
-                activeBtn.classList.remove('bg-[#13151c]', 'text-slate-300', 'border-[#222634]', 'font-medium');
-                activeBtn.classList.add('bg-[#ff2d95]', 'text-black', 'border-pink-400', 'font-semibold');
+                activeBtn.classList.remove('bg-[#13151c]', 'text-[#ffee00]', 'border-[#ffee00]/40', 'font-semibold');
+                activeBtn.classList.add('bg-[#ffee00]', 'text-black', 'border-[#ffee00]', 'shadow-md', 'shadow-yellow-500/20', 'font-bold');
             }
             const cards = document.querySelectorAll('.portfolio-card');
             cards.forEach(card => {
