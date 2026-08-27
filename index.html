@@ -43,11 +43,13 @@
             position: relative;
             width: 100%;
             padding-top: 177.77%; /* 9:16 aspect ratio */
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
             background-color: #050608;
+            cursor: pointer;
+            box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
         }
-        .video-wrapper video, .video-wrapper iframe {
+        .video-wrapper video {
             position: absolute;
             top: 0;
             left: 0;
@@ -55,6 +57,46 @@
             height: 100%;
             object-fit: cover;
             border: none;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .video-wrapper:hover video {
+            transform: scale(1.03);
+        }
+        .thumb-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 12px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 35%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0.85) 100%);
+            transition: all 0.3s ease;
+        }
+        .video-wrapper:hover .thumb-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.15) 65%, rgba(0,0,0,0.75) 100%);
+        }
+        .play-btn-glow {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #ffee00;
+            color: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 25px rgba(255, 238, 0, 0.75), 0 0 50px rgba(255, 45, 149, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.95);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+        }
+        .video-wrapper:hover .play-btn-glow {
+            transform: scale(1.16);
+            box-shadow: 0 0 35px rgba(255, 238, 0, 1), 0 0 70px rgba(255, 45, 149, 0.65);
+        }
+        .ctr-badge {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
         }
         /* Glassmorphism Card Hover */
         .portfolio-card {
@@ -129,10 +171,33 @@
             <!-- VIDEO 1: MINIMALIST SERUM -->
             <div class="portfolio-card item-beauty bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
                 <div>
-                    <div class="video-wrapper mb-3">
-                        <video controls playsinline preload="metadata" poster="beauty_minimalist_poster.jpg">
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="beauty_minimalist_poster.jpg">
                             <source src="beauty_minimalist.mp4" type="video/mp4">
                         </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-red-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-red-400/60 shadow-lg animate-pulse">
+                                    🔥 48.5% THUMB-STOP
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 4.9
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ⚡ Tap to Play UGC
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                    4K HD
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Minimalist</span>
@@ -154,10 +219,33 @@
             <!-- VIDEO 2: DIAMOND LUXE -->
             <div class="portfolio-card item-beauty bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
                 <div>
-                    <div class="video-wrapper mb-3">
-                        <video controls playsinline preload="metadata" poster="beauty_diamond_poster.jpg">
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="beauty_diamond_poster.jpg">
                             <source src="beauty_diamond.mp4" type="video/mp4">
                         </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-purple-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-purple-400/60 shadow-lg animate-pulse">
+                                    💎 51.2% LUXURY UGC
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 5.0
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ✨ Solitaire Sparkle
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                    4K HD
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Diamond Luxe</span>
@@ -180,10 +268,33 @@
             <!-- VIDEO 1: FASHION CLOTHES -->
             <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
                 <div>
-                    <div class="video-wrapper mb-3">
-                        <video controls playsinline preload="metadata" poster="fashion_clothes_poster.jpg">
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="fashion_clothes_poster.jpg">
                             <source src="fashion_clothes.mp4" type="video/mp4">
                         </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-pink-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-pink-400/60 shadow-lg animate-pulse">
+                                    👗 49.8% VIRAL FIT
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 4.9
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🔥 GRWM Try-On Look
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                    4K HD
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Aura Studio</span>
@@ -205,10 +316,33 @@
             <!-- VIDEO 2: FASHION SNEAKERS -->
             <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
                 <div>
-                    <div class="video-wrapper mb-3">
-                        <video controls playsinline preload="metadata" poster="fashion_sneakers_poster.jpg">
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="fashion_sneakers_poster.jpg">
                             <source src="fashion_sneakers.mp4" type="video/mp4">
                         </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-teal-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-teal-400/60 shadow-lg animate-pulse">
+                                    👟 52.4% STREET KICK
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 4.8
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ⚡ 360° Unboxing ASMR
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                    4K HD
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">StreetKicks</span>
@@ -231,10 +365,33 @@
             <!-- VIDEO 1: SAMSUNG GALAXY S25 ULTRA -->
             <div class="portfolio-card item-tech bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
                 <div>
-                    <div class="video-wrapper mb-3">
-                        <video controls playsinline preload="metadata" poster="tech_samsung_poster.jpg">
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="tech_samsung_poster.jpg">
                             <source src="tech_samsung.mp4" type="video/mp4">
                         </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-cyan-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-cyan-400/60 shadow-lg animate-pulse">
+                                    🚀 57.3% SCI-FI REVEAL
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 5.0
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ⚡ S25 Ultra Titanium
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                    4K HD
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Samsung</span>
@@ -256,10 +413,33 @@
             <!-- VIDEO 2: SMARTWATCH -->
             <div class="portfolio-card item-tech bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
                 <div>
-                    <div class="video-wrapper mb-3">
-                        <video controls playsinline preload="metadata" poster="tech_watch_poster.jpg">
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="tech_watch_poster.jpg">
                             <source src="tech_watch.mp4" type="video/mp4">
                         </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-amber-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber-400/60 shadow-lg animate-pulse">
+                                    ⌚ 50.6% WRIST GLOW
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 4.9
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🌸 AMOLED Watch Dial
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                    4K HD
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">PulseTime</span>
@@ -282,10 +462,33 @@
             <!-- VIDEO 1: KITKAT CHOCOLATE -->
             <div class="portfolio-card item-food bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
                 <div>
-                    <div class="video-wrapper mb-3">
-                        <video controls playsinline preload="metadata" poster="food_kitkat_poster.jpg">
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="food_kitkat_poster.jpg">
                             <source src="food_kitkat.mp4" type="video/mp4">
                         </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-amber-700/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber-500/60 shadow-lg animate-pulse">
+                                    🍫 54.1% CRUNCH SNAP
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 5.0
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 💥 Gold Wafer ASMR
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                    4K HD
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">KitKat</span>
@@ -307,10 +510,33 @@
             <!-- VIDEO 2: MRBEAST FEASTABLES -->
             <div class="portfolio-card item-food bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
                 <div>
-                    <div class="video-wrapper mb-3">
-                        <video controls playsinline preload="metadata" poster="food_feastables_poster.jpg">
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="food_feastables_poster.jpg">
                             <source src="food_feastables.mp4" type="video/mp4">
                         </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-blue-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-blue-400/60 shadow-lg animate-pulse">
+                                    🔥 53.6% MRBEAST VIRAL
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 4.9
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🍫 Honest Taste Test
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                    4K HD
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Feastables</span>
@@ -333,10 +559,33 @@
             <!-- VIDEO 1: RED BULL MOTION -->
             <div class="portfolio-card item-motion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
                 <div>
-                    <div class="video-wrapper mb-3">
-                        <video controls playsinline preload="metadata" poster="motion_redbull_poster.jpg">
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="motion_redbull_poster.jpg">
                             <source src="motion_redbull.mp4" type="video/mp4">
                         </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-red-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-red-400/60 shadow-lg animate-pulse">
+                                    ⚡ 58.7% KINETIC POP
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 5.0
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 💥 Can Pop VFX
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                    4K HD
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Red Bull</span>
@@ -358,10 +607,33 @@
             <!-- VIDEO 2: PRIME HYDRATION MOTION -->
             <div class="portfolio-card item-motion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
                 <div>
-                    <div class="video-wrapper mb-3">
-                        <video controls playsinline preload="metadata" poster="motion_prime_poster.jpg">
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="motion_prime_poster.jpg">
                             <source src="motion_prime.mp4" type="video/mp4">
                         </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-cyan-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-cyan-400/60 shadow-lg animate-pulse">
+                                    🧊 59.4% GLACIER BLAST
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 5.0
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ❄️ Dynamic Explosion
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                    4K HD
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Prime Hydration</span>
@@ -493,11 +765,48 @@
         <p>© 2026 <strong class="text-[#ff2d95]">HeyTeck</strong> <strong class="text-[#5eead4]">Portfolio</strong>. All Rights Reserved. Powered by HeyTeck AI Engine.</p>
     </footer>
 
-    <!-- Category Filter & Form Submit Script -->
+    <!-- Category Filter, Video Player & Form Submit Script -->
     <script>
+        function toggleUgcPlay(wrapper) {
+            const video = wrapper.querySelector('video');
+            const overlay = wrapper.querySelector('.thumb-overlay');
+            if (!video) return;
+
+            // Pause all other videos & restore their overlays
+            document.querySelectorAll('.video-wrapper').forEach(w => {
+                if (w !== wrapper) {
+                    const otherVid = w.querySelector('video');
+                    const otherOverlay = w.querySelector('.thumb-overlay');
+                    if (otherVid && !otherVid.paused) {
+                        otherVid.pause();
+                        otherVid.removeAttribute('controls');
+                    }
+                    if (otherOverlay) otherOverlay.style.display = 'flex';
+                }
+            });
+
+            if (video.paused) {
+                if (overlay) overlay.style.display = 'none';
+                video.setAttribute('controls', 'true');
+                video.play();
+            } else {
+                video.pause();
+                video.removeAttribute('controls');
+                if (overlay) overlay.style.display = 'flex';
+            }
+        }
+
         function filterCategory(category) {
-            // Pause any playing video when switching categories
-            document.querySelectorAll('video').forEach(v => v.pause());
+            // Pause any playing video and restore overlays when switching categories
+            document.querySelectorAll('.video-wrapper').forEach(w => {
+                const v = w.querySelector('video');
+                const o = w.querySelector('.thumb-overlay');
+                if (v && !v.paused) {
+                    v.pause();
+                    v.removeAttribute('controls');
+                }
+                if (o) o.style.display = 'flex';
+            });
 
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {
@@ -519,18 +828,22 @@
             });
         }
 
-        // Initialize Beauty UGC as default category & auto-pause sibling videos
+        // Initialize Beauty UGC as default category & auto-restore overlays on video pause/end
         document.addEventListener('DOMContentLoaded', () => {
             filterCategory('beauty');
 
-            // Auto-pause other videos when one starts playing
-            document.querySelectorAll('video').forEach(video => {
-                video.addEventListener('play', () => {
-                    document.querySelectorAll('video').forEach(otherVideo => {
-                        if (otherVideo !== video) {
-                            otherVideo.pause();
-                        }
-                    });
+            document.querySelectorAll('.video-wrapper video').forEach(video => {
+                video.addEventListener('ended', function() {
+                    this.removeAttribute('controls');
+                    const overlay = this.parentElement.querySelector('.thumb-overlay');
+                    if (overlay) overlay.style.display = 'flex';
+                });
+                video.addEventListener('pause', function() {
+                    if (this.currentTime === 0 || this.ended) {
+                        this.removeAttribute('controls');
+                        const overlay = this.parentElement.querySelector('.thumb-overlay');
+                        if (overlay) overlay.style.display = 'flex';
+                    }
                 });
             });
         });
