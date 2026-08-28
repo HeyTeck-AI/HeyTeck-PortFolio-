@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,9 @@
     <!-- Google Fonts: Plus Jakarta Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -38,17 +41,20 @@
             min-height: 100vh;
             letter-spacing: 0.01em;
         }
+
         /* 9:16 Aspect Ratio Container */
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 177.77%; /* 9:16 aspect ratio */
+            padding-top: 177.77%;
+            /* 9:16 aspect ratio */
             border-radius: 14px;
             overflow: hidden;
             background-color: #050608;
             cursor: pointer;
             box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.6);
         }
+
         .video-wrapper video {
             position: absolute;
             top: 0;
@@ -59,9 +65,11 @@
             border: none;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .video-wrapper:hover video {
             transform: scale(1.03);
         }
+
         .thumb-overlay {
             position: absolute;
             inset: 0;
@@ -70,12 +78,14 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 12px;
-            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 35%, rgba(0,0,0,0.2) 65%, rgba(0,0,0,0.85) 100%);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 35%, rgba(0, 0, 0, 0.2) 65%, rgba(0, 0, 0, 0.85) 100%);
             transition: all 0.3s ease;
         }
+
         .video-wrapper:hover .thumb-overlay {
-            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.15) 65%, rgba(0,0,0,0.75) 100%);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.05) 35%, rgba(0, 0, 0, 0.15) 65%, rgba(0, 0, 0, 0.75) 100%);
         }
+
         .play-btn-glow {
             width: 58px;
             height: 58px;
@@ -89,19 +99,23 @@
             border: 3px solid rgba(255, 255, 255, 0.95);
             transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
         }
+
         .video-wrapper:hover .play-btn-glow {
             transform: scale(1.16);
             box-shadow: 0 0 35px rgba(255, 238, 0, 1), 0 0 70px rgba(255, 45, 149, 0.65);
         }
+
         .ctr-badge {
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
         }
+
         /* Glassmorphism Card Hover */
         .portfolio-card {
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .portfolio-card:hover {
             transform: translateY(-4px);
             border-color: #ff2d95;
@@ -109,67 +123,89 @@
         }
     </style>
 </head>
+
 <body class="font-sans antialiased text-white selection:bg-[#ff2d95] selection:text-black">
 
     <!-- HIGGSFIELD STYLE TOP ANNOUNCEMENT BANNER -->
-    <div class="bg-gradient-to-r from-[#ff2d95] via-pink-500 to-[#5eead4] text-black font-bold text-xs sm:text-sm py-2 px-4 text-center tracking-wide shadow-md flex items-center justify-center gap-2">
+    <div
+        class="bg-gradient-to-r from-[#ff2d95] via-pink-500 to-[#5eead4] text-black font-bold text-xs sm:text-sm py-2 px-4 text-center tracking-wide shadow-md flex items-center justify-center gap-2">
         <span class="bg-black text-white px-2 py-0.5 rounded text-[10px] uppercase font-bold">COLLAB</span>
         <span>⚡ Available for Paid Collaborations &amp; Brand Whitelisting</span>
     </div>
 
     <!-- NAVIGATION HEADER -->
-    <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between border-b border-[#1c1f2b]">
+    <header
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between border-b border-[#1c1f2b]">
         <div class="flex items-center gap-3">
-            <img src="logo.png" alt="HeyTeck Logo" class="h-9 w-9 object-contain rounded-xl bg-[#13151c] p-1 border border-[#2a2f42]">
+            <img src="logo.png" alt="HeyTeck Logo"
+                class="h-9 w-9 object-contain rounded-xl bg-[#13151c] p-1 border border-[#2a2f42]">
             <span class="text-xl font-bold tracking-normal">
                 <span class="text-[#ff2d95]">HeyTeck</span> <span class="text-[#5eead4]">Portfolio</span>
             </span>
         </div>
-        <a href="#contact" class="hidden sm:inline-flex items-center gap-1.5 bg-[#ff2d95] hover:bg-pink-600 text-black font-semibold text-xs px-4 py-2 rounded-full transition-all shadow-md shadow-pink-500/20 tracking-wide">
+        <a href="#contact"
+            class="hidden sm:inline-flex items-center gap-1.5 bg-[#ff2d95] hover:bg-pink-600 text-black font-semibold text-xs px-4 py-2 rounded-full transition-all shadow-md shadow-pink-500/20 tracking-wide">
             Work With Me <span class="text-sm font-bold">›</span>
         </a>
     </header>
 
     <!-- SECTION 1: HERO HEADER -->
     <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-16 text-center">
-        
+
         <div class="text-[#5eead4] font-semibold text-xs sm:text-sm mb-4 tracking-widest uppercase">
             HeyTeck Direct-Response UGC Studio
         </div>
-        
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-white tracking-wide leading-tight sm:leading-[1.25] mb-6 max-w-5xl mx-auto">
+
+        <h1
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-white tracking-wide leading-tight sm:leading-[1.25] mb-6 max-w-5xl mx-auto">
             UGC Ads That Scale D2C Brands.
         </h1>
 
         <!-- BLUE HERO SUBHEADING -->
         <p class="text-base sm:text-lg text-blue-400 max-w-4xl mx-auto leading-relaxed mb-4 font-medium tracking-wide">
-            Performance-driven 9:16 direct-response creatives engineered to maximize thumb-stop rates, lower CPAs, and compound ROAS — powered by <strong class="text-[#ff2d95]">HeyTeck AI</strong>.
+            Performance-driven 9:16 direct-response creatives engineered to maximize thumb-stop rates, lower CPAs, and
+            compound ROAS — powered by <strong class="text-[#ff2d95]">HeyTeck AI</strong>.
         </p>
     </section>
 
     <!-- SECTION 2: NICHE FILTER TABS -->
     <section id="portfolio" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-[#1a1d29]">
         <div class="text-center mb-10">
-            <div class="text-[#5eead4] font-semibold text-xs sm:text-sm mb-1 uppercase tracking-wider">Portfolio Showcase</div>
-            <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-wide mb-3">Direct-Response Creative Portfolio</h2>
+            <div class="text-[#5eead4] font-semibold text-xs sm:text-sm mb-1 uppercase tracking-wider">Portfolio
+                Showcase</div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-wide mb-3">Direct-Response Creative Portfolio
+            </h2>
             <!-- BLUE PORTFOLIO SUBHEADING -->
-            <p class="text-blue-400 text-sm sm:text-base font-medium tracking-wide">Filter by your brand niche to view high-retention 9:16 vertical video creatives.</p>
+            <p class="text-blue-400 text-sm sm:text-base font-medium tracking-wide">Filter by your brand niche to view
+                high-retention 9:16 vertical video creatives.</p>
         </div>
 
         <!-- 5 NICHE BUTTONS IN REORDERED SEQUENCE: Beauty UGC, Fashion UGC, Tech UGC, Food UGC, Motion UGC -->
-        <div class="flex flex-nowrap overflow-x-auto sm:flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 mb-12 py-1 scrollbar-none">
-            <button onclick="filterCategory('beauty')" id="btn-beauty" class="filter-btn active bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] shadow-lg shadow-yellow-400/40 opacity-100 ring-2 ring-white whitespace-nowrap">🧴 Beauty UGC</button>
-            <button onclick="filterCategory('fashion')" id="btn-fashion" class="filter-btn bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] opacity-75 hover:opacity-100 whitespace-nowrap">👗 Fashion UGC</button>
-            <button onclick="filterCategory('tech')" id="btn-tech" class="filter-btn bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] opacity-75 hover:opacity-100 whitespace-nowrap">🎧 Tech UGC</button>
-            <button onclick="filterCategory('food')" id="btn-food" class="filter-btn bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] opacity-75 hover:opacity-100 whitespace-nowrap">🍔 Food UGC</button>
-            <button onclick="filterCategory('motion')" id="btn-motion" class="filter-btn bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] opacity-75 hover:opacity-100 whitespace-nowrap">🎬 Motion UGC</button>
+        <div
+            class="flex flex-nowrap overflow-x-auto sm:flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 mb-12 py-1 scrollbar-none">
+            <button onclick="filterCategory('beauty')" id="btn-beauty"
+                class="filter-btn active bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] shadow-lg shadow-yellow-400/40 opacity-100 ring-2 ring-white whitespace-nowrap">🧴
+                Beauty UGC</button>
+            <button onclick="filterCategory('fashion')" id="btn-fashion"
+                class="filter-btn bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] opacity-75 hover:opacity-100 whitespace-nowrap">👗
+                Fashion UGC</button>
+            <button onclick="filterCategory('tech')" id="btn-tech"
+                class="filter-btn bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] opacity-75 hover:opacity-100 whitespace-nowrap">🎧
+                Tech UGC</button>
+            <button onclick="filterCategory('food')" id="btn-food"
+                class="filter-btn bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] opacity-75 hover:opacity-100 whitespace-nowrap">🍔
+                Food UGC</button>
+            <button onclick="filterCategory('motion')" id="btn-motion"
+                class="filter-btn bg-[#ffee00] text-black font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full transition-all border border-[#ffee00] opacity-75 hover:opacity-100 whitespace-nowrap">🎬
+                Motion UGC</button>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto gap-6 sm:gap-8" id="portfolio-grid">
-            
+
             <!-- CATEGORY 1: BEAUTY UGC (2 VIDEOS: 1. MINIMALIST, 2. DIAMOND) -->
             <!-- VIDEO 1: MINIMALIST SERUM -->
-            <div class="portfolio-card item-beauty bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+            <div
+                class="portfolio-card item-beauty bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
                         <video playsinline preload="none" poster="beauty_minimalist_poster.jpg">
@@ -177,23 +213,30 @@
                         </video>
                         <div class="thumb-overlay">
                             <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-red-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-red-400/60 shadow-lg animate-pulse">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-red-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-red-400/60 shadow-lg animate-pulse">
                                     🔥 48.5% THUMB-STOP
                                 </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
                                     ★★★★★ 4.9
                                 </span>
                             </div>
                             <div class="self-center pointer-events-none my-auto">
                                 <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ⚡ Tap to Play UGC
+                                <span
+                                    class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ⚡ Tap to Play
+                                    UGC
                                 </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                <span
+                                    class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
                                     4K HD
                                 </span>
                             </div>
@@ -201,23 +244,29 @@
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Minimalist</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
+                        <span
+                            class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Salicylic Acid 02% Face Serum">Salicylic Acid 02% Face Serum</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ Clear Skin Journey • Texture &amp; Glow Check">
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate"
+                        title="Salicylic Acid 02% Face Serum">Salicylic Acid 02% Face Serum</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate"
+                        title="⚡ Clear Skin Journey • Texture &amp; Glow Check">
                         ⚡ Clear Skin Journey • Texture &amp; Glow Check
                     </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: Discovery Holy Grail ('I Finally Found It')">
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate"
+                        title="🔥 Hook: Discovery Holy Grail ('I Finally Found It')">
                         🔥 Hook: Discovery Holy Grail ('I Finally Found It')
                     </div>
                 </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                <div
+                    class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 48.5% | ROAS: 4.2x
                 </div>
             </div>
 
             <!-- VIDEO 2: DIAMOND LUXE -->
-            <div class="portfolio-card item-beauty bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+            <div
+                class="portfolio-card item-beauty bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
                         <video playsinline preload="none" poster="beauty_diamond_poster.jpg">
@@ -225,23 +274,30 @@
                         </video>
                         <div class="thumb-overlay">
                             <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-purple-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-purple-400/60 shadow-lg animate-pulse">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-purple-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-purple-400/60 shadow-lg animate-pulse">
                                     💎 51.2% LUXURY UGC
                                 </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
                                     ★★★★★ 5.0
                                 </span>
                             </div>
                             <div class="self-center pointer-events-none my-auto">
                                 <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ✨ Solitaire Sparkle
+                                <span
+                                    class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ✨ Solitaire
+                                    Sparkle
                                 </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                <span
+                                    class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
                                     4K HD
                                 </span>
                             </div>
@@ -249,24 +305,30 @@
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Diamond Luxe</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
+                        <span
+                            class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Solitaire Diamond Necklace Showcase">Solitaire Diamond Necklace Showcase</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ Macro Sparkle • Luxury Light Reflection">
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate"
+                        title="Solitaire Diamond Necklace Showcase">Solitaire Diamond Necklace Showcase</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate"
+                        title="⚡ Macro Sparkle • Luxury Light Reflection">
                         ⚡ Macro Sparkle • Luxury Light Reflection
                     </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: Ultra-Luxury Visual Magnet">
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate"
+                        title="🔥 Hook: Ultra-Luxury Visual Magnet">
                         🔥 Hook: Ultra-Luxury Visual Magnet
                     </div>
                 </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                <div
+                    class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 51.2% | ROAS: 4.9x
                 </div>
             </div>
 
             <!-- CATEGORY 2: FASHION UGC (2 VIDEOS: 1. CLOTHES, 2. SNEAKERS) -->
             <!-- VIDEO 1: FASHION CLOTHES -->
-            <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
+            <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between"
+                style="display: none;">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
                         <video playsinline preload="none" poster="fashion_clothes_poster.jpg">
@@ -274,23 +336,30 @@
                         </video>
                         <div class="thumb-overlay">
                             <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-pink-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-pink-400/60 shadow-lg animate-pulse">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-pink-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-pink-400/60 shadow-lg animate-pulse">
                                     👗 49.8% VIRAL FIT
                                 </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
                                     ★★★★★ 4.9
                                 </span>
                             </div>
                             <div class="self-center pointer-events-none my-auto">
                                 <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🔥 GRWM Try-On Look
+                                <span
+                                    class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🔥 GRWM
+                                    Try-On Look
                                 </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                <span
+                                    class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
                                     4K HD
                                 </span>
                             </div>
@@ -298,23 +367,29 @@
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Aura Studio</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
+                        <span
+                            class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Summer Ribbed Corset Top Try-On">Summer Ribbed Corset Top Try-On</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ GRWM Fit Check • Style &amp; Outfit Inspo">
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate"
+                        title="Summer Ribbed Corset Top Try-On">Summer Ribbed Corset Top Try-On</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate"
+                        title="⚡ GRWM Fit Check • Style &amp; Outfit Inspo">
                         ⚡ GRWM Fit Check • Style &amp; Outfit Inspo
                     </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: 'Stop Scrolling If You Want This Fit'">
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate"
+                        title="🔥 Hook: 'Stop Scrolling If You Want This Fit'">
                         🔥 Hook: 'Stop Scrolling If You Want This Fit'
                     </div>
                 </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                <div
+                    class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 49.8% | ROAS: 4.7x
                 </div>
             </div>
 
             <!-- VIDEO 2: FASHION SNEAKERS -->
-            <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
+            <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between"
+                style="display: none;">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
                         <video playsinline preload="none" poster="fashion_sneakers_poster.jpg">
@@ -322,23 +397,30 @@
                         </video>
                         <div class="thumb-overlay">
                             <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-teal-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-teal-400/60 shadow-lg animate-pulse">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-teal-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-teal-400/60 shadow-lg animate-pulse">
                                     👟 52.4% STREET KICK
                                 </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
                                     ★★★★★ 4.8
                                 </span>
                             </div>
                             <div class="self-center pointer-events-none my-auto">
                                 <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ⚡ 360° Unboxing ASMR
+                                <span
+                                    class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ⚡ 360°
+                                    Unboxing ASMR
                                 </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                <span
+                                    class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
                                     4K HD
                                 </span>
                             </div>
@@ -346,24 +428,30 @@
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">StreetKicks</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
+                        <span
+                            class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Pastel Platform Street Sneakers">Pastel Platform Street Sneakers</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ 360° Macro Detail • Fresh Unboxing">
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate"
+                        title="Pastel Platform Street Sneakers">Pastel Platform Street Sneakers</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate"
+                        title="⚡ 360° Macro Detail • Fresh Unboxing">
                         ⚡ 360° Macro Detail • Fresh Unboxing
                     </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: Fresh Kicks Unboxing ASMR">
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate"
+                        title="🔥 Hook: Fresh Kicks Unboxing ASMR">
                         🔥 Hook: Fresh Kicks Unboxing ASMR
                     </div>
                 </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                <div
+                    class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 52.4% | ROAS: 5.1x
                 </div>
             </div>
 
             <!-- CATEGORY 3: TECH UGC (2 VIDEOS: 1. SAMSUNG, 2. WATCH) -->
             <!-- VIDEO 1: SAMSUNG GALAXY S25 ULTRA -->
-            <div class="portfolio-card item-tech bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
+            <div class="portfolio-card item-tech bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between"
+                style="display: none;">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
                         <video playsinline preload="none" poster="tech_samsung_poster.jpg">
@@ -371,23 +459,30 @@
                         </video>
                         <div class="thumb-overlay">
                             <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-cyan-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-cyan-400/60 shadow-lg animate-pulse">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-cyan-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-cyan-400/60 shadow-lg animate-pulse">
                                     🚀 57.3% SCI-FI REVEAL
                                 </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
                                     ★★★★★ 5.0
                                 </span>
                             </div>
                             <div class="self-center pointer-events-none my-auto">
                                 <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ⚡ S25 Ultra Titanium
+                                <span
+                                    class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ⚡ S25 Ultra
+                                    Titanium
                                 </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                <span
+                                    class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
                                     4K HD
                                 </span>
                             </div>
@@ -395,23 +490,29 @@
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Samsung</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
+                        <span
+                            class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Galaxy S25 Ultra Vapor Reveal">Galaxy S25 Ultra Vapor Reveal</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ Smoke Blast • Titanium Frame Reveal">
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate"
+                        title="Galaxy S25 Ultra Vapor Reveal">Galaxy S25 Ultra Vapor Reveal</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate"
+                        title="⚡ Smoke Blast • Titanium Frame Reveal">
                         ⚡ Smoke Blast • Titanium Frame Reveal
                     </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: Cinematic Sci-Fi Product Launch">
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate"
+                        title="🔥 Hook: Cinematic Sci-Fi Product Launch">
                         🔥 Hook: Cinematic Sci-Fi Product Launch
                     </div>
                 </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                <div
+                    class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 57.3% | ROAS: 5.8x
                 </div>
             </div>
 
             <!-- VIDEO 2: SMARTWATCH -->
-            <div class="portfolio-card item-tech bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
+            <div class="portfolio-card item-tech bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between"
+                style="display: none;">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
                         <video playsinline preload="none" poster="tech_watch_poster.jpg">
@@ -419,23 +520,30 @@
                         </video>
                         <div class="thumb-overlay">
                             <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-amber-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber-400/60 shadow-lg animate-pulse">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-amber-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber-400/60 shadow-lg animate-pulse">
                                     ⌚ 50.6% WRIST GLOW
                                 </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
                                     ★★★★★ 4.9
                                 </span>
                             </div>
                             <div class="self-center pointer-events-none my-auto">
                                 <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🌸 AMOLED Watch Dial
+                                <span
+                                    class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🌸 AMOLED
+                                    Watch Dial
                                 </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                <span
+                                    class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
                                     4K HD
                                 </span>
                             </div>
@@ -443,24 +551,30 @@
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">PulseTime</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
+                        <span
+                            class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Rose Gold AMOLED Smartwatch">Rose Gold AMOLED Smartwatch</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ AMOLED Floral Watch Face • Wrist Glow">
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate"
+                        title="Rose Gold AMOLED Smartwatch">Rose Gold AMOLED Smartwatch</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate"
+                        title="⚡ AMOLED Floral Watch Face • Wrist Glow">
                         ⚡ AMOLED Floral Watch Face • Wrist Glow
                     </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: Aesthetic Daily Wrist Candy">
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate"
+                        title="🔥 Hook: Aesthetic Daily Wrist Candy">
                         🔥 Hook: Aesthetic Daily Wrist Candy
                     </div>
                 </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                <div
+                    class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 50.6% | ROAS: 4.5x
                 </div>
             </div>
 
             <!-- CATEGORY 4: FOOD UGC (2 VIDEOS: 1. KITKAT, 2. FEASTABLES) -->
             <!-- VIDEO 1: KITKAT CHOCOLATE -->
-            <div class="portfolio-card item-food bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
+            <div class="portfolio-card item-food bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between"
+                style="display: none;">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
                         <video playsinline preload="none" poster="food_kitkat_poster.jpg">
@@ -468,23 +582,30 @@
                         </video>
                         <div class="thumb-overlay">
                             <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-amber-700/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber-500/60 shadow-lg animate-pulse">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-amber-700/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber-500/60 shadow-lg animate-pulse">
                                     🍫 54.1% CRUNCH SNAP
                                 </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
                                     ★★★★★ 5.0
                                 </span>
                             </div>
                             <div class="self-center pointer-events-none my-auto">
                                 <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 💥 Gold Wafer ASMR
+                                <span
+                                    class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 💥 Gold Wafer
+                                    ASMR
                                 </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                <span
+                                    class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
                                     4K HD
                                 </span>
                             </div>
@@ -492,23 +613,29 @@
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">KitKat</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
+                        <span
+                            class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Gold Flake Crispy Chocolate Snap">Gold Flake Crispy Chocolate Snap</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ Ultra-Crisp Waffle Snap • Gold Dust">
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate"
+                        title="Gold Flake Crispy Chocolate Snap">Gold Flake Crispy Chocolate Snap</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate"
+                        title="⚡ Ultra-Crisp Waffle Snap • Gold Dust">
                         ⚡ Ultra-Crisp Waffle Snap • Gold Dust
                     </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: High-Definition Sonic Crunch">
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate"
+                        title="🔥 Hook: High-Definition Sonic Crunch">
                         🔥 Hook: High-Definition Sonic Crunch
                     </div>
                 </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                <div
+                    class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 54.1% | ROAS: 5.3x
                 </div>
             </div>
 
             <!-- VIDEO 2: MRBEAST FEASTABLES -->
-            <div class="portfolio-card item-food bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
+            <div class="portfolio-card item-food bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between"
+                style="display: none;">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
                         <video playsinline preload="none" poster="food_feastables_poster.jpg">
@@ -516,23 +643,30 @@
                         </video>
                         <div class="thumb-overlay">
                             <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-blue-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-blue-400/60 shadow-lg animate-pulse">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-blue-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-blue-400/60 shadow-lg animate-pulse">
                                     🔥 53.6% MRBEAST VIRAL
                                 </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
                                     ★★★★★ 4.9
                                 </span>
                             </div>
                             <div class="self-center pointer-events-none my-auto">
                                 <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🍫 Honest Taste Test
+                                <span
+                                    class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🍫 Honest
+                                    Taste Test
                                 </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                <span
+                                    class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
                                     4K HD
                                 </span>
                             </div>
@@ -540,24 +674,30 @@
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Feastables</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
+                        <span
+                            class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="MrBeast Milk Chocolate Bar Taste Test">MrBeast Milk Chocolate Bar Taste Test</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ Creator Review • Chocolate Bar Break">
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate"
+                        title="MrBeast Milk Chocolate Bar Taste Test">MrBeast Milk Chocolate Bar Taste Test</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate"
+                        title="⚡ Creator Review • Chocolate Bar Break">
                         ⚡ Creator Review • Chocolate Bar Break
                     </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: 'Is MrBeast Bar Actually Good?'">
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate"
+                        title="🔥 Hook: 'Is MrBeast Bar Actually Good?'">
                         🔥 Hook: 'Is MrBeast Bar Actually Good?'
                     </div>
                 </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                <div
+                    class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 53.6% | ROAS: 5.0x
                 </div>
             </div>
 
             <!-- CATEGORY 5: MOTION UGC (2 VIDEOS: 1. REDBULL, 2. PRIME) -->
             <!-- VIDEO 1: RED BULL MOTION -->
-            <div class="portfolio-card item-motion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
+            <div class="portfolio-card item-motion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between"
+                style="display: none;">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
                         <video playsinline preload="none" poster="motion_redbull_poster.jpg">
@@ -565,23 +705,30 @@
                         </video>
                         <div class="thumb-overlay">
                             <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-red-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-red-400/60 shadow-lg animate-pulse">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-red-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-red-400/60 shadow-lg animate-pulse">
                                     ⚡ 58.7% KINETIC POP
                                 </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
                                     ★★★★★ 5.0
                                 </span>
                             </div>
                             <div class="self-center pointer-events-none my-auto">
                                 <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 💥 Can Pop VFX
+                                <span
+                                    class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 💥 Can Pop
+                                    VFX
                                 </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                <span
+                                    class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
                                     4K HD
                                 </span>
                             </div>
@@ -589,23 +736,29 @@
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Red Bull</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
+                        <span
+                            class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Sci-Fi Energy Can Lightning Burst">Sci-Fi Energy Can Lightning Burst</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ Lightning Spark • Vapor Can Pop">
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate"
+                        title="Sci-Fi Energy Can Lightning Burst">Sci-Fi Energy Can Lightning Burst</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate"
+                        title="⚡ Lightning Spark • Vapor Can Pop">
                         ⚡ Lightning Spark • Vapor Can Pop
                     </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: High-Voltage Kinetic Shock">
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate"
+                        title="🔥 Hook: High-Voltage Kinetic Shock">
                         🔥 Hook: High-Voltage Kinetic Shock
                     </div>
                 </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                <div
+                    class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 58.7% | ROAS: 6.2x
                 </div>
             </div>
 
             <!-- VIDEO 2: PRIME HYDRATION MOTION -->
-            <div class="portfolio-card item-motion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
+            <div class="portfolio-card item-motion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between"
+                style="display: none;">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
                         <video playsinline preload="none" poster="motion_prime_poster.jpg">
@@ -613,23 +766,30 @@
                         </video>
                         <div class="thumb-overlay">
                             <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-cyan-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-cyan-400/60 shadow-lg animate-pulse">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-cyan-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-cyan-400/60 shadow-lg animate-pulse">
                                     🧊 59.4% GLACIER BLAST
                                 </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                <span
+                                    class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
                                     ★★★★★ 5.0
                                 </span>
                             </div>
                             <div class="self-center pointer-events-none my-auto">
                                 <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ❄️ Dynamic Explosion
+                                <span
+                                    class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> ❄️ Dynamic
+                                    Explosion
                                 </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
+                                <span
+                                    class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">
                                     4K HD
                                 </span>
                             </div>
@@ -637,17 +797,22 @@
                     </div>
                     <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Prime Hydration</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
+                        <span
+                            class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Ice Pop Splash Mountain Animation">Ice Pop Splash Mountain Animation</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ Ice Explosion • Glacier Splash VFX">
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate"
+                        title="Ice Pop Splash Mountain Animation">Ice Pop Splash Mountain Animation</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate"
+                        title="⚡ Ice Explosion • Glacier Splash VFX">
                         ⚡ Ice Explosion • Glacier Splash VFX
                     </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: Frozen Dynamic Blast Impact">
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate"
+                        title="🔥 Hook: Frozen Dynamic Blast Impact">
                         🔥 Hook: Frozen Dynamic Blast Impact
                     </div>
                 </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                <div
+                    class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 59.4% | ROAS: 6.5x
                 </div>
             </div>
@@ -660,54 +825,73 @@
         <div class="text-center mb-12">
             <h2 class="text-3xl font-bold text-white tracking-tight mb-3">Get In Touch &amp; Connect</h2>
             <!-- BLUE CONTACT SUBHEADING -->
-            <p class="text-blue-400 text-sm sm:text-base font-medium">Ready to scale your D2C brand with high-performing video ads? Reach out via form or any platform below.</p>
+            <p class="text-blue-400 text-sm sm:text-base font-medium">Ready to scale your D2C brand with high-performing
+                video ads? Reach out via form or any platform below.</p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
-            
+
             <!-- Direct Brief Form (AJAX SUBMIT FOR SMOOTH IN-PAGE CONFIRMATION) -->
             <div class="lg:col-span-3 bg-[#13151c] border border-[#222634] rounded-3xl p-6 sm:p-8">
                 <form id="direct-inquiry-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_subject" value="New UGC Inquiry from HeyTeck Website!">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Your Name *</label>
-                        <input type="text" name="name" required placeholder="e.g. Alex Johnson" class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all">
+                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Your Name
+                            *</label>
+                        <input type="text" name="name" required placeholder="e.g. Alex Johnson"
+                            class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Brand Name *</label>
-                        <input type="text" name="brand" required placeholder="e.g. Lumina Beauty" class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all">
+                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Brand Name
+                            *</label>
+                        <input type="text" name="brand" required placeholder="e.g. Lumina Beauty"
+                            class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Website / Store URL</label>
-                        <input type="url" name="website" placeholder="https://luminabeauty.com" class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all">
+                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Website / Store
+                            URL</label>
+                        <input type="url" name="website" placeholder="https://luminabeauty.com"
+                            class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Project Details &amp; Requirements</label>
-                        <textarea name="message" rows="4" placeholder="Tell us about your target audience, key pain points, and required video concepts..." class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all"></textarea>
+                        <label class="block text-xs font-semibold text-slate-300 tracking-wider mb-2">Project Details
+                            &amp; Requirements</label>
+                        <textarea name="message" rows="4"
+                            placeholder="Tell us about your target audience, key pain points, and required video concepts..."
+                            class="w-full bg-[#0b0c10] border border-[#222634] rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-[#ff2d95] transition-all"></textarea>
                     </div>
-                    <button type="submit" id="submit-btn" class="w-full inline-flex items-center justify-center gap-2 bg-[#ff2d95] hover:bg-pink-600 text-black font-bold py-3.5 rounded-full transition-all shadow-xl shadow-pink-500/20 text-base cursor-pointer">
+                    <button type="submit" id="submit-btn"
+                        class="w-full inline-flex items-center justify-center gap-2 bg-[#ff2d95] hover:bg-pink-600 text-black font-bold py-3.5 rounded-full transition-all shadow-xl shadow-pink-500/20 text-base cursor-pointer">
                         Send Direct Inquiry <span class="text-xl">›</span>
                     </button>
-                    <div id="form-success" class="hidden bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm font-semibold p-4 rounded-xl text-center">
-                        ✅ Thank you! Your message has been submitted successfully. HeyTeck Portfolio team will get back to you within 12 hours.
+                    <div id="form-success"
+                        class="hidden bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm font-semibold p-4 rounded-xl text-center">
+                        ✅ Thank you! Your message has been submitted successfully. HeyTeck Portfolio team will get back
+                        to you within 12 hours.
                     </div>
                 </form>
             </div>
 
             <!-- Quick Connect & Platform Links -->
-            <div class="lg:col-span-2 bg-[#13151c] border border-[#222634] rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
+            <div
+                class="lg:col-span-2 bg-[#13151c] border border-[#222634] rounded-3xl p-6 sm:p-8 flex flex-col justify-between">
                 <div>
                     <h3 class="text-xl font-bold text-white mb-2">⚡ Direct Contact</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed mb-4 font-normal">Instant response via WhatsApp or Email.</p>
-                    
+                    <p class="text-slate-400 text-xs leading-relaxed mb-4 font-normal">Instant response via WhatsApp or
+                        Email.</p>
+
                     <div class="space-y-2.5 mb-6">
                         <!-- WHATSAPP BUTTON -->
-                        <a href="https://wa.me/919685378469?text=Hi%20HeyTeck%20Portfolio!%20I%20saw%20your%20UGC%20work%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-full transition-all text-sm shadow-md shadow-emerald-600/20 whitespace-nowrap">
+                        <a href="https://wa.me/919685378469?text=Hi%20HeyTeck%20Portfolio!%20I%20saw%20your%20UGC%20work%20and%20want%20to%20discuss%20a%20project."
+                            target="_blank" rel="noopener noreferrer"
+                            class="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-full transition-all text-sm shadow-md shadow-emerald-600/20 whitespace-nowrap">
                             💬 WhatsApp <span class="font-bold">›</span>
                         </a>
                         <!-- EMAIL BUTTON -->
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nikola44tesla44@gmail.com&su=UGC%20Project%20Inquiry" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-full transition-all text-sm shadow-md shadow-blue-600/20 whitespace-nowrap">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nikola44tesla44@gmail.com&su=UGC%20Project%20Inquiry"
+                            target="_blank" rel="noopener noreferrer"
+                            class="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 rounded-full transition-all text-sm shadow-md shadow-blue-600/20 whitespace-nowrap">
                             ✉️ Email <span class="font-bold">›</span>
                         </a>
                     </div>
@@ -716,42 +900,72 @@
                     <h4 class="text-xs font-semibold text-white tracking-wider mb-2.5">💼 Hire On Platforms</h4>
                     <div class="grid grid-cols-3 gap-2 mb-6">
                         <!-- FIVERR YELLOW HEART -->
-                        <a href="https://www.fiverr.com/s/VrRmVe5" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center p-2.5 bg-[#ffee00]/10 border border-[#ffee00]/40 hover:border-[#ffee00] rounded-xl text-[#ffee00] font-bold text-xs transition-all hover:scale-[1.03]" title="Fiverr Gig">
+                        <a href="https://www.fiverr.com/s/VrRmVe5" target="_blank" rel="noopener noreferrer"
+                            class="flex items-center justify-center p-2.5 bg-[#ffee00]/10 border border-[#ffee00]/40 hover:border-[#ffee00] rounded-xl text-[#ffee00] font-bold text-xs transition-all hover:scale-[1.03]"
+                            title="Fiverr Gig">
                             💛 Fiverr
                         </a>
                         <!-- UPWORK GREEN HEART -->
-                        <a href="https://www.upwork.com/freelancers/~0191502f329ee62fd5?mp_source=share" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center p-2.5 bg-emerald-950/30 border border-emerald-500/30 hover:border-emerald-400 rounded-xl text-emerald-400 font-bold text-xs transition-all hover:scale-[1.03]" title="Upwork Profile">
+                        <a href="https://www.upwork.com/freelancers/~0191502f329ee62fd5?mp_source=share" target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex items-center justify-center p-2.5 bg-emerald-950/30 border border-emerald-500/30 hover:border-emerald-400 rounded-xl text-emerald-400 font-bold text-xs transition-all hover:scale-[1.03]"
+                            title="Upwork Profile">
                             💚 Upwork
                         </a>
                         <!-- CONTRA RED DOT/HEART -->
-                        <a href="https://contra.com/neeraj_kushwaha_s9d9s7ze?referralExperimentNid=DEFAULT_REFERRAL_EXPERIMENT&referrerUserToken=neeraj_kushwaha_s9d9s7ze" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center p-2.5 bg-red-950/30 border border-red-500/30 hover:border-red-400 rounded-xl text-red-500 font-bold text-xs transition-all hover:scale-[1.03]" title="Contra Profile">
+                        <a href="https://contra.com/neeraj_kushwaha_s9d9s7ze?referralExperimentNid=DEFAULT_REFERRAL_EXPERIMENT&referrerUserToken=neeraj_kushwaha_s9d9s7ze"
+                            target="_blank" rel="noopener noreferrer"
+                            class="flex items-center justify-center p-2.5 bg-red-950/30 border border-red-500/30 hover:border-red-400 rounded-xl text-red-500 font-bold text-xs transition-all hover:scale-[1.03]"
+                            title="Contra Profile">
                             🔴 Contra
                         </a>
                     </div>
 
                     <!-- Social Channels (ONLY OFFICIAL SVG LOGOS, NO TEXT LABELS) -->
-                    <h4 class="text-xs font-semibold text-white tracking-wider mb-2.5">🌐 Social Media &amp; Channels</h4>
+                    <h4 class="text-xs font-semibold text-white tracking-wider mb-2.5">🌐 Social Media &amp; Channels
+                    </h4>
                     <div class="grid grid-cols-4 gap-2">
                         <!-- INSTAGRAM SVG LOGO ONLY -->
-                        <a href="https://www.instagram.com/heyteck/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center py-2.5 bg-pink-950/30 border border-pink-500/30 hover:border-pink-400 text-pink-400 rounded-xl transition-all hover:scale-[1.03]" title="Instagram">
-                            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <a href="https://www.instagram.com/heyteck/" target="_blank" rel="noopener noreferrer"
+                            class="flex items-center justify-center py-2.5 bg-pink-950/30 border border-pink-500/30 hover:border-pink-400 text-pink-400 rounded-xl transition-all hover:scale-[1.03]"
+                            title="Instagram">
+                            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
                         </a>
                         <!-- FACEBOOK SVG LOGO ONLY -->
-                        <a href="https://www.facebook.com/share/19AvkrkUc8/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center py-2.5 bg-blue-950/30 border border-blue-500/30 hover:border-blue-400 text-blue-400 rounded-xl transition-all hover:scale-[1.03]" title="Facebook">
-                            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        <a href="https://www.facebook.com/share/19AvkrkUc8/" target="_blank" rel="noopener noreferrer"
+                            class="flex items-center justify-center py-2.5 bg-blue-950/30 border border-blue-500/30 hover:border-blue-400 text-blue-400 rounded-xl transition-all hover:scale-[1.03]"
+                            title="Facebook">
+                            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
                         </a>
                         <!-- YOUTUBE SVG LOGO ONLY -->
-                        <a href="https://youtube.com/@heyteckportfolio" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center py-2.5 bg-red-950/30 border border-red-500/30 hover:border-red-400 text-red-500 rounded-xl transition-all hover:scale-[1.03]" title="YouTube">
-                            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        <a href="https://youtube.com/@heyteckportfolio" target="_blank" rel="noopener noreferrer"
+                            class="flex items-center justify-center py-2.5 bg-red-950/30 border border-red-500/30 hover:border-red-400 text-red-500 rounded-xl transition-all hover:scale-[1.03]"
+                            title="YouTube">
+                            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
                         </a>
                         <!-- X (TWITTER) SVG LOGO ONLY -->
-                        <a href="https://x.com/HeyTeck_" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center py-2.5 bg-[#ffee00]/10 border border-[#ffee00]/40 hover:border-[#ffee00] text-[#ffee00] rounded-xl transition-all hover:scale-[1.03]" title="Twitter / X">
-                            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        <a href="https://x.com/HeyTeck_" target="_blank" rel="noopener noreferrer"
+                            class="flex items-center justify-center py-2.5 bg-[#ffee00]/10 border border-[#ffee00]/40 hover:border-[#ffee00] text-[#ffee00] rounded-xl transition-all hover:scale-[1.03]"
+                            title="Twitter / X">
+                            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
                         </a>
                     </div>
                 </div>
 
-                <div class="pt-4 mt-4 border-t border-[#1c1f2b] text-[11px] text-slate-400 flex items-center justify-between">
+                <div
+                    class="pt-4 mt-4 border-t border-[#1c1f2b] text-[11px] text-slate-400 flex items-center justify-between">
                     <span>📍 Remote Worldwide</span>
                     <span class="text-emerald-400 font-semibold">⚡ Response &lt; 2h</span>
                 </div>
@@ -762,7 +976,8 @@
 
     <!-- FOOTER COPYRIGHT -->
     <footer class="border-t border-[#1a1d29] py-8 text-center text-xs text-slate-500">
-        <p>© 2026 <strong class="text-[#ff2d95]">HeyTeck</strong> <strong class="text-[#5eead4]">Portfolio</strong>. All Rights Reserved. Powered by HeyTeck AI Engine.</p>
+        <p>© 2026 <strong class="text-[#ff2d95]">HeyTeck</strong> <strong class="text-[#5eead4]">Portfolio</strong>. All
+            Rights Reserved. Powered by HeyTeck AI Engine.</p>
     </footer>
 
     <!-- Category Filter, Video Player & Form Submit Script -->
@@ -833,12 +1048,12 @@
             filterCategory('beauty');
 
             document.querySelectorAll('.video-wrapper video').forEach(video => {
-                video.addEventListener('ended', function() {
+                video.addEventListener('ended', function () {
                     this.removeAttribute('controls');
                     const overlay = this.parentElement.querySelector('.thumb-overlay');
                     if (overlay) overlay.style.display = 'flex';
                 });
-                video.addEventListener('pause', function() {
+                video.addEventListener('pause', function () {
                     if (this.currentTime === 0 || this.ended) {
                         this.removeAttribute('controls');
                         const overlay = this.parentElement.querySelector('.thumb-overlay');
@@ -860,19 +1075,20 @@
                 method: "POST",
                 body: formData
             })
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('form-success').classList.remove('hidden');
-                btn.innerHTML = 'Send Direct Inquiry <span class="text-xl">›</span>';
-                btn.disabled = false;
-                form.reset();
-            })
-            .catch(err => {
-                document.getElementById('form-success').classList.remove('hidden');
-                btn.innerHTML = 'Send Direct Inquiry <span class="text-xl">›</span>';
-                btn.disabled = false;
-            });
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('form-success').classList.remove('hidden');
+                    btn.innerHTML = 'Send Direct Inquiry <span class="text-xl">›</span>';
+                    btn.disabled = false;
+                    form.reset();
+                })
+                .catch(err => {
+                    document.getElementById('form-success').classList.remove('hidden');
+                    btn.innerHTML = 'Send Direct Inquiry <span class="text-xl">›</span>';
+                    btn.disabled = false;
+                });
         }
     </script>
 </body>
+
 </html>
