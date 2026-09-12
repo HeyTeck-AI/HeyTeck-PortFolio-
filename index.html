@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeyTeck Portfolio — High-Converting UGC Creator Portfolio</title>
     <link rel="icon" href="logo.png" type="image/png">
+        <!-- Google Analytics 4 (GA4) Tracker -->
+    <!-- Paste your Measurement ID (e.g. G-XXXXXXXXXX) below to track Country, Device, Age, Gender & Real-time Visitors -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
+
+    <!-- Google Firebase Realtime Database (Free Tier Cloud Sync) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Plus Jakarta Sans & Inter -->
@@ -109,6 +125,114 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+        }
+
+        
+        /* ======================================================== */
+        /* INSTAGRAM REELS STYLE LIKE & COMMENT FLOATING OVERLAY */
+        /* ======================================================== */
+        @keyframes heartPulse {
+            0% { transform: scale(1); }
+            35% { transform: scale(1.4); }
+            65% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        .heart-pop {
+            animation: heartPulse 0.4s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
+        }
+
+        /* Floating actions positioned on right edge like Instagram Reels */
+        .insta-actions {
+            position: absolute;
+            right: 10px;
+            bottom: 64px;
+            z-index: 30;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Revealed instantly when visitor taps / plays the video */
+        .insta-actions.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .insta-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            outline: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .insta-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .insta-btn:active {
+            transform: scale(0.92);
+        }
+
+        .insta-icon-bubble {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(11, 12, 16, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+            transition: all 0.25s ease;
+        }
+
+        .insta-btn:hover .insta-icon-bubble {
+            background: rgba(19, 21, 28, 0.9);
+            border-color: rgba(255, 255, 255, 0.45);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Instagram Like Activated State */
+        .insta-btn.liked .heart-svg {
+            fill: #ff2b55 !important;
+            stroke: #ff2b55 !important;
+            filter: drop-shadow(0 0 10px rgba(255, 43, 85, 0.75));
+        }
+
+        .insta-btn.liked .insta-icon-bubble {
+            border-color: rgba(255, 43, 85, 0.6);
+            background: rgba(255, 43, 85, 0.18);
+        }
+
+        .insta-btn.liked .like-count {
+            color: #ff2b55 !important;
+            font-weight: 800;
+        }
+
+        .insta-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 3px;
+            letter-spacing: -0.01em;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.95);
+            font-variant-numeric: tabular-nums;
         }
 
         /* Glassmorphism Card Hover */
@@ -234,9 +358,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="fashion_boots">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'fashion_boots')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-fashion_boots">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'fashion_boots')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-fashion_boots">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">LuxeFootwear</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
                     </div>
@@ -280,9 +427,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="fashion_diamond">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'fashion_diamond')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-fashion_diamond">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'fashion_diamond')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-fashion_diamond">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Luxe Jewels</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
                     </div>
@@ -326,9 +496,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="fashion_sneakers">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'fashion_sneakers')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-fashion_sneakers">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'fashion_sneakers')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-fashion_sneakers">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">StreetKicks</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
                     </div>
@@ -372,9 +565,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="fashion_blazer">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'fashion_blazer')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-fashion_blazer">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'fashion_blazer')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-fashion_blazer">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Vogue Minimal</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
                     </div>
@@ -423,9 +639,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="beauty_cetaphil">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'beauty_cetaphil')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-beauty_cetaphil">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'beauty_cetaphil')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-beauty_cetaphil">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Cetaphil</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
                     </div>
@@ -469,9 +708,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="beauty_shampoo">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'beauty_shampoo')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-beauty_shampoo">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'beauty_shampoo')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-beauty_shampoo">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Botanical Hair</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
                     </div>
@@ -515,9 +777,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="beauty_minimalist">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'beauty_minimalist')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-beauty_minimalist">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'beauty_minimalist')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-beauty_minimalist">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Minimalist</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
                     </div>
@@ -561,9 +846,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="beauty_perfume">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'beauty_perfume')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-beauty_perfume">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'beauty_perfume')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-beauty_perfume">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Luxe Parfum</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
                     </div>
@@ -612,9 +920,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="tech_iphone">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'tech_iphone')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-tech_iphone">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'tech_iphone')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-tech_iphone">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Apple</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
                     </div>
@@ -658,9 +989,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="tech_samsung">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'tech_samsung')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-tech_samsung">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'tech_samsung')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-tech_samsung">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Samsung</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
                     </div>
@@ -704,9 +1058,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="tech_watch">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'tech_watch')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-tech_watch">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'tech_watch')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-tech_watch">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">PulseTime</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
                     </div>
@@ -750,9 +1127,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="tech_fans">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'tech_fans')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-tech_fans">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'tech_fans')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-tech_fans">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">BreezeTech</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
                     </div>
@@ -801,9 +1201,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="motion_monster">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'motion_monster')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-motion_monster">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'motion_monster')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-motion_monster">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Monster Energy</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
                     </div>
@@ -847,9 +1270,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="motion_cocacola">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'motion_cocacola')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-motion_cocacola">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'motion_cocacola')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-motion_cocacola">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Coca-Cola</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
                     </div>
@@ -893,9 +1339,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="motion_redbull">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'motion_redbull')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-motion_redbull">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'motion_redbull')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-motion_redbull">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Red Bull</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
                     </div>
@@ -939,9 +1408,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="motion_prime">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'motion_prime')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-motion_prime">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'motion_prime')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-motion_prime">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Prime Hydration</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
                     </div>
@@ -990,9 +1482,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="food_lays">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'food_lays')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-food_lays">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'food_lays')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-food_lays">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Lay's</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
                     </div>
@@ -1036,9 +1551,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="food_oreo">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'food_oreo')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-food_oreo">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'food_oreo')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-food_oreo">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Oreo</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
                     </div>
@@ -1082,9 +1620,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="food_feastables">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'food_feastables')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-food_feastables">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'food_feastables')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-food_feastables">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Feastables</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
                     </div>
@@ -1128,9 +1689,32 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
+                        
+                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        <div class="insta-actions" data-video-id="food_kitkat">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'food_kitkat')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-food_kitkat">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'food_kitkat')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-food_kitkat">0</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-between mb-1.5">
+                </div>
+                <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">KitKat</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
                     </div>
@@ -1326,33 +1910,395 @@
 
     <!-- Category Filter, Video Player & Form Submit Script -->
     <script>
+        
+        // ========================================================
+        // 1. VIDEO PLAY / PAUSE & INSTAGRAM OVERLAY ACTIVATION
+        // ========================================================
         function toggleUgcPlay(wrapper) {
             const video = wrapper.querySelector('video');
             const overlay = wrapper.querySelector('.thumb-overlay');
+            const actions = wrapper.querySelector('.insta-actions');
             if (!video) return;
 
-            // Pause all other videos & restore their overlays
+            // Pause all other videos & reset their overlays
             document.querySelectorAll('.video-wrapper').forEach(w => {
                 if (w !== wrapper) {
                     const otherVid = w.querySelector('video');
                     const otherOverlay = w.querySelector('.thumb-overlay');
+                    const otherActions = w.querySelector('.insta-actions');
                     if (otherVid && !otherVid.paused) {
                         otherVid.pause();
                         otherVid.removeAttribute('controls');
                     }
                     if (otherOverlay) otherOverlay.style.display = 'flex';
+                    if (otherActions) otherActions.classList.remove('active');
                 }
             });
 
             if (video.paused) {
                 if (overlay) overlay.style.display = 'none';
+                if (actions) actions.classList.add('active'); // REVEAL Instagram Actions on Tap!
                 video.setAttribute('controls', 'true');
                 video.play();
             } else {
                 video.pause();
                 video.removeAttribute('controls');
                 if (overlay) overlay.style.display = 'flex';
+                // Note: actions can stay active or fade out on overlay restore
+                if (actions) actions.classList.remove('active');
             }
+        }
+
+        // ========================================================
+        // 2. GOOGLE FIREBASE CONFIGURATION & REALTIME DATABASE
+        // ========================================================
+        // Replace this config object with your Google Firebase Project credentials
+        // Get it free at: https://console.firebase.google.com/ -> Project Settings -> General -> Web App
+        const firebaseConfig = {
+            apiKey: "YOUR_FIREBASE_API_KEY",
+            authDomain: "heyteck-portfolio.firebaseapp.com",
+            databaseURL: "https://heyteck-portfolio-default-rtdb.firebaseio.com",
+            projectId: "heyteck-portfolio",
+            storageBucket: "heyteck-portfolio.appspot.com",
+            messagingSenderId: "1234567890",
+            appId: "1:1234567890:web:abcdef123456"
+        };
+
+        let firebaseApp = null;
+        let firebaseDb = null;
+        const isFirebaseConfigured = firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('YOUR_FIREBASE');
+
+        if (isFirebaseConfigured && typeof firebase !== 'undefined') {
+            try {
+                firebaseApp = firebase.initializeApp(firebaseConfig);
+                firebaseDb = firebase.database();
+                console.log('Firebase Realtime Database initialized successfully.');
+            } catch (err) {
+                console.warn('Firebase init notice (falling back to local state):', err);
+            }
+        }
+
+        // Realistic seed data for portfolio creatives
+        const seedStats = {
+            fashion_boots: { likes: 148, comments: [
+                { name: "Siddharth (Brand Lead)", text: "The leather macro texture shot is insane! Converting high.", time: "2h ago" },
+                { name: "Ananya M.", text: "Love the Autumn color palette. What camera was used?", time: "5h ago" }
+            ]},
+            fashion_diamond: { likes: 215, comments: [
+                { name: "Karan Jewels", text: "Brilliant refraction angle on the pendant diamond!", time: "1d ago" }
+            ]},
+            fashion_sneakers: { likes: 184, comments: [
+                { name: "SneakerHead India", text: "The jump-cut hook stopped my scroll immediately 🔥", time: "3d ago" }
+            ]},
+            fashion_blazer: { likes: 129, comments: [] },
+            beauty_cetaphil: { likes: 260, comments: [
+                { name: "GlowAesthetics", text: "Clean skincare aesthetics. Perfect UGC pacing!", time: "1d ago" }
+            ]},
+            beauty_shampoo: { likes: 172, comments: [] },
+            beauty_minimalist: { likes: 310, comments: [
+                { name: "Rohit V.", text: "Higgsfield style grade looks ultra premium.", time: "4d ago" }
+            ]},
+            beauty_perfume: { likes: 195, comments: [] },
+            tech_iphone: { likes: 342, comments: [
+                { name: "TechNova Studio", text: "Sound design on the unboxing is top tier 🎧", time: "12h ago" }
+            ]},
+            tech_samsung: { likes: 228, comments: [] },
+            tech_watch: { likes: 189, comments: [] },
+            tech_fans: { likes: 154, comments: [] },
+            motion_monster: { likes: 276, comments: [
+                { name: "EnergyLab", text: "Speed ramp on the can pop was super energetic!", time: "2d ago" }
+            ]},
+            motion_cocacola: { likes: 388, comments: [] },
+            motion_redbull: { likes: 294, comments: [] },
+            motion_prime: { likes: 320, comments: [] },
+            food_lays: { likes: 198, comments: [] },
+            food_oreo: { likes: 245, comments: [] },
+            food_feastables: { likes: 367, comments: [
+                { name: "MrBeast Fan Club", text: "Feastables bar snap hook is unmatched haha", time: "3d ago" }
+            ]},
+            food_kitkat: { likes: 210, comments: [] }
+        };
+
+        // Helper to format numbers (e.g. 1.2K)
+        function formatMetric(num) {
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
+        }
+
+        // ========================================================
+        // 3. INSTAGRAM LIKE FUNCTIONALITY
+        // ========================================================
+        function handleLikeClick(event, videoId) {
+            event.stopPropagation(); // Don't trigger video pause/play
+            
+            const btn = event.currentTarget;
+            const heartSvg = btn.querySelector('.heart-svg');
+            const countSpan = document.getElementById('likes-' + videoId);
+            
+            const storageKey = 'heyteck_liked_' + videoId;
+            const isLiked = localStorage.getItem(storageKey) === 'true';
+            
+            let currentLikes = parseInt(btn.dataset.likeCount || 0, 10);
+            
+            if (!isLiked) {
+                // LIKE ACTION: Turn RED, Heart Pop Animation, +1
+                btn.classList.add('liked');
+                heartSvg.classList.remove('heart-pop');
+                void heartSvg.offsetWidth; // Trigger reflow for CSS animation restart
+                heartSvg.classList.add('heart-pop');
+                
+                currentLikes += 1;
+                btn.dataset.likeCount = currentLikes;
+                if (countSpan) countSpan.textContent = formatMetric(currentLikes);
+                localStorage.setItem(storageKey, 'true');
+
+                // Sync with Firebase if connected
+                if (firebaseDb) {
+                    firebaseDb.ref('videos/' + videoId + '/likes').transaction(curr => (curr || 0) + 1);
+                }
+            } else {
+                // UNLIKE ACTION: Turn back to empty outline, -1
+                btn.classList.remove('liked');
+                heartSvg.classList.remove('heart-pop');
+                
+                currentLikes = Math.max(0, currentLikes - 1);
+                btn.dataset.likeCount = currentLikes;
+                if (countSpan) countSpan.textContent = formatMetric(currentLikes);
+                localStorage.removeItem(storageKey);
+
+                // Sync with Firebase if connected
+                if (firebaseDb) {
+                    firebaseDb.ref('videos/' + videoId + '/likes').transaction(curr => Math.max(0, (curr || 1) - 1));
+                }
+            }
+        }
+
+        // ========================================================
+        // 4. INSTAGRAM COMMENTS MODAL & SUBMISSION
+        // ========================================================
+        let currentModalVideoId = null;
+
+        function handleCommentClick(event, videoId) {
+            event.stopPropagation(); // Don't toggle video
+            openCommentModal(videoId);
+        }
+
+        function openCommentModal(videoId) {
+            currentModalVideoId = videoId;
+            const modal = document.getElementById('commentsModal');
+            const videoWrapper = document.querySelector(`[data-video-id="${videoId}"]`);
+            let videoTitle = 'UGC Creative';
+            if (videoWrapper) {
+                const card = videoWrapper.closest('.portfolio-card');
+                if (card) {
+                    const h3 = card.querySelector('h3');
+                    if (h3) videoTitle = h3.textContent.trim();
+                }
+            }
+
+            document.getElementById('modalVideoId').value = videoId;
+            document.getElementById('modalVideoTitle').textContent = videoTitle;
+
+            // Load comments
+            renderComments(videoId);
+
+            // Open with animation
+            modal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                modal.classList.remove('opacity-0');
+                const content = modal.querySelector('.relative');
+                content.classList.remove('translate-y-full', 'sm:scale-95');
+                content.classList.add('translate-y-0', 'sm:scale-100');
+            });
+        }
+
+        function closeCommentModal() {
+            const modal = document.getElementById('commentsModal');
+            if (!modal) return;
+            const content = modal.querySelector('.relative');
+            content.classList.remove('translate-y-0', 'sm:scale-100');
+            content.classList.add('translate-y-full', 'sm:scale-95');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                currentModalVideoId = null;
+            }, 300);
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeCommentModal();
+        });
+
+        function getLocalComments(videoId) {
+            const localKey = 'heyteck_comments_' + videoId;
+            const saved = localStorage.getItem(localKey);
+            if (saved) {
+                try { return JSON.parse(saved); } catch(e) {}
+            }
+            return (seedStats[videoId] && seedStats[videoId].comments) ? [...seedStats[videoId].comments] : [];
+        }
+
+        function renderComments(videoId) {
+            const list = document.getElementById('commentsList');
+            const badge = document.getElementById('modalCommentCountBadge');
+            list.innerHTML = '';
+
+            if (firebaseDb) {
+                // Read from Firebase
+                firebaseDb.ref('videos/' + videoId + '/comments').once('value').then(snap => {
+                    const val = snap.val();
+                    let commentsArray = [];
+                    if (val) {
+                        commentsArray = Object.values(val);
+                    } else {
+                        commentsArray = getLocalComments(videoId);
+                    }
+                    displayCommentsList(commentsArray, badge, list);
+                }).catch(() => {
+                    displayCommentsList(getLocalComments(videoId), badge, list);
+                });
+            } else {
+                displayCommentsList(getLocalComments(videoId), badge, list);
+            }
+        }
+
+        function displayCommentsList(comments, badge, container) {
+            container.innerHTML = '';
+            badge.textContent = comments.length;
+            const cardBadge = document.getElementById('comments-count-' + currentModalVideoId);
+            if (cardBadge) cardBadge.textContent = comments.length;
+
+            if (comments.length === 0) {
+                container.innerHTML = `
+                    <div class="py-12 text-center text-neutral-400">
+                        <div class="w-14 h-14 rounded-full bg-neutral-800/80 border border-neutral-700 flex items-center justify-center mx-auto mb-3 text-neutral-300">
+                            💬
+                        </div>
+                        <p class="text-sm font-semibold text-white">No comments yet</p>
+                        <p class="text-xs text-neutral-400 mt-1 max-w-xs mx-auto">Be the first to share your thoughts or feedback on this creative!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            comments.forEach(c => {
+                const initial = (c.name || 'A').charAt(0).toUpperCase();
+                const item = document.createElement('div');
+                item.className = 'pt-3 first:pt-0 flex items-start gap-3';
+                item.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#ff2d95] to-[#5eead4] text-black font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-md">
+                        ${initial}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-white truncate">${escapeHtml(c.name || 'Anonymous')}</span>
+                            <span class="text-[10px] text-neutral-400 font-medium">${c.time || 'Just now'}</span>
+                        </div>
+                        <p class="text-xs text-neutral-200 mt-1 leading-relaxed break-words">${escapeHtml(c.text || '')}</p>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function handleCommentSubmit(e) {
+            e.preventDefault();
+            const videoId = document.getElementById('modalVideoId').value;
+            const nameInput = document.getElementById('commenterName');
+            const textInput = document.getElementById('commenterText');
+            const submitBtn = document.getElementById('commentSubmitBtn');
+
+            const name = nameInput.value.trim();
+            const text = textInput.value.trim();
+            if (!name || !text || !videoId) return;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Posting...</span>';
+
+            const newComment = {
+                name: name,
+                text: text,
+                time: 'Just now',
+                timestamp: Date.now()
+            };
+
+            // Save locally
+            const localKey = 'heyteck_comments_' + videoId;
+            const currentList = getLocalComments(videoId);
+            currentList.push(newComment);
+            localStorage.setItem(localKey, JSON.stringify(currentList));
+
+            // Sync with Firebase
+            if (firebaseDb) {
+                firebaseDb.ref('videos/' + videoId + '/comments').push(newComment);
+            }
+
+            // Re-render
+            setTimeout(() => {
+                renderComments(videoId);
+                textInput.value = '';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>Post</span>
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>`;
+            }, 300);
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        // ========================================================
+        // 5. INITIALIZE COUNTS & LISTENERS ON PAGE LOAD
+        // ========================================================
+        function initInteractions() {
+            Object.keys(seedStats).forEach(videoId => {
+                const seed = seedStats[videoId];
+                const countSpan = document.getElementById('likes-' + videoId);
+                const commentSpan = document.getElementById('comments-count-' + videoId);
+                const wrapper = document.querySelector(`[data-video-id="${videoId}"]`);
+                const likeBtn = wrapper ? wrapper.querySelector('.like-btn') : null;
+
+                // Check local liked state
+                const isLiked = localStorage.getItem('heyteck_liked_' + videoId) === 'true';
+                let initialLikes = seed.likes;
+
+                if (isLiked && likeBtn) {
+                    likeBtn.classList.add('liked');
+                    initialLikes += 1;
+                }
+
+                if (likeBtn) likeBtn.dataset.likeCount = initialLikes;
+                if (countSpan) countSpan.textContent = formatMetric(initialLikes);
+
+                // Initial comment count
+                const localComments = getLocalComments(videoId);
+                if (commentSpan) commentSpan.textContent = localComments.length;
+
+                // Attach Firebase realtime listener if configured
+                if (firebaseDb) {
+                    firebaseDb.ref('videos/' + videoId).on('value', snapshot => {
+                        const data = snapshot.val();
+                        if (data) {
+                            if (typeof data.likes === 'number' && countSpan) {
+                                const finalLikes = data.likes + (isLiked ? 1 : 0);
+                                if (likeBtn) likeBtn.dataset.likeCount = finalLikes;
+                                countSpan.textContent = formatMetric(finalLikes);
+                            }
+                            if (data.comments && commentSpan) {
+                                const commentsArr = Object.values(data.comments);
+                                commentSpan.textContent = commentsArr.length;
+                            }
+                        }
+                    });
+                }
+            });
         }
 
         function filterCategory(category) {
@@ -1390,6 +2336,7 @@
         // Initialize Fashion UGC as default category & auto-restore overlays on video pause/end
         document.addEventListener('DOMContentLoaded', () => {
             filterCategory('fashion');
+            initInteractions();
 
             document.querySelectorAll('.video-wrapper video').forEach(video => {
                 video.addEventListener('ended', function () {
@@ -1433,6 +2380,68 @@
                 });
         }
     </script>
+
+    <!-- ======================================================== -->
+    <!-- INSTAGRAM / REELS STYLE COMMENTS BOTTOM SHEET MODAL -->
+    <!-- ======================================================== -->
+    <div id="commentsModal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-md">
+        <!-- Backdrop dismiss click -->
+        <div class="absolute inset-0 cursor-pointer" onclick="closeCommentModal()"></div>
+
+        <!-- Modal Content Container -->
+        <div class="relative w-full max-w-lg bg-[#13151c] border border-[#222634] rounded-t-3xl sm:rounded-2xl shadow-2xl shadow-black flex flex-col max-h-[85vh] sm:max-h-[80vh] overflow-hidden z-10 transform translate-y-full sm:translate-y-0 sm:scale-95 transition-all duration-300">
+            <!-- Mobile Top Handle -->
+            <div class="w-12 h-1.5 bg-neutral-700 rounded-full mx-auto mt-3 mb-1 sm:hidden"></div>
+
+            <!-- Modal Header -->
+            <div class="px-5 py-4 border-b border-[#222634] flex items-center justify-between bg-[#11131a]">
+                <div class="flex-1 pr-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-base font-bold text-white tracking-wide">Comments</span>
+                        <span id="modalCommentCountBadge" class="bg-[#ffee00]/20 text-[#ffee00] text-xs font-bold px-2.5 py-0.5 rounded-full border border-[#ffee00]/30">0</span>
+                    </div>
+                    <p id="modalVideoTitle" class="text-xs text-blue-400 font-medium truncate mt-0.5">Autumn Leather Mini Boots</p>
+                </div>
+                <button onclick="closeCommentModal()" class="w-8 h-8 rounded-full bg-[#1c1f2b] hover:bg-[#2a2f42] text-neutral-400 hover:text-white flex items-center justify-center transition-colors">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Scrollable Comments List -->
+            <div id="commentsList" class="flex-1 overflow-y-auto p-5 space-y-3.5 min-h-[200px] max-h-[380px] divide-y divide-[#1e2230]/60">
+                <!-- Comments rendered here via JavaScript -->
+            </div>
+
+            <!-- Comment Input Form Footer -->
+            <div class="p-4 bg-[#0d0e14] border-t border-[#222634]">
+                <form id="commentForm" onsubmit="handleCommentSubmit(event)" class="space-y-2">
+                    <input type="hidden" id="modalVideoId" value="">
+                    
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="commenterName" placeholder="Your Name or Brand (e.g. Rahul • D2C Marketer)" required
+                            class="w-full bg-[#161922] border border-[#262b3d] rounded-xl px-3.5 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#5eead4] focus:ring-1 focus:ring-[#5eead4] transition-all">
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="commenterText" placeholder="Add a comment on this creative..." required
+                            class="flex-1 bg-[#161922] border border-[#262b3d] rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#ff2d95] focus:ring-1 focus:ring-[#ff2d95] transition-all">
+                        
+                        <button type="submit" id="commentSubmitBtn"
+                            class="bg-gradient-to-r from-[#ff2d95] to-[#ff2d95] hover:opacity-90 active:scale-95 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-md shadow-pink-500/25 flex items-center gap-1.5 whitespace-nowrap cursor-pointer">
+                            <span>Post</span>
+                            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
