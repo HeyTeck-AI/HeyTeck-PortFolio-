@@ -258,7 +258,7 @@
 
     <!-- NAVIGATION HEADER -->
     <header
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between border-b border-[#1c1f2b]">
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between border-b border-[#1c1f2b] relative">
         <div class="flex items-center gap-3">
             <img src="logo.png" alt="HeyTeck Logo"
                 class="h-9 w-9 object-contain rounded-xl bg-[#13151c] p-1 border border-[#2a2f42]">
@@ -266,6 +266,21 @@
                 <span class="text-[#ff2d95]">HeyTeck</span> <span class="text-[#5eead4]">Portfolio</span>
             </span>
         </div>
+
+        <!-- PRIVATE REAL-TIME ANALYTICS BUTTON (RIGHT IN THE MIDDLE - VISIBLE ONLY TO HEYTECK) -->
+        <div id="headerAnalyticsCenter" class="hidden items-center justify-center">
+            <button type="button" onclick="openAnalyticsDashboard()"
+                class="inline-flex items-center gap-2 bg-[#121520]/95 hover:bg-[#181d2c] border border-emerald-500/50 hover:border-emerald-400 text-white font-bold text-xs px-3.5 sm:px-4 py-1.5 rounded-full shadow-lg shadow-emerald-950/40 backdrop-blur-md transition-all hover:scale-105 active:scale-95 cursor-pointer ring-1 ring-emerald-500/30">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="text-emerald-400 font-extrabold">Live: <strong id="headerLiveCount" class="text-white">1</strong></span>
+                <span class="text-neutral-600">|</span>
+                <span class="text-neutral-200 flex items-center gap-1 font-bold">📊 Analytics</span>
+            </button>
+        </div>
+
         <a href="#contact"
             class="hidden sm:inline-flex items-center gap-1.5 bg-[#ff2d95] hover:bg-pink-600 text-black font-semibold text-xs px-4 py-2 rounded-full transition-all shadow-md shadow-pink-500/20 tracking-wide">
             Work With Me <span class="text-sm font-bold">›</span>
@@ -2092,7 +2107,7 @@
         function updateAdminUI() {
             const btn = document.getElementById('adminLockBtn');
             const creatorBtn = document.getElementById('creatorToggleBtn');
-            const analyticsHud = document.getElementById('adminAnalyticsHud');
+            const headerAnalytics = document.getElementById('headerAnalyticsCenter');
 
             if (isAdminMode) {
                 if (btn) {
@@ -2102,9 +2117,9 @@
                 if (creatorBtn) {
                     creatorBtn.classList.remove('hidden');
                 }
-                if (analyticsHud) {
-                    analyticsHud.classList.remove('hidden');
-                    analyticsHud.classList.add('flex');
+                if (headerAnalytics) {
+                    headerAnalytics.classList.remove('hidden');
+                    headerAnalytics.classList.add('flex');
                 }
             } else {
                 if (btn) {
@@ -2114,9 +2129,9 @@
                 if (creatorBtn) {
                     creatorBtn.classList.add('hidden');
                 }
-                if (analyticsHud) {
-                    analyticsHud.classList.add('hidden');
-                    analyticsHud.classList.remove('flex');
+                if (headerAnalytics) {
+                    headerAnalytics.classList.add('hidden');
+                    headerAnalytics.classList.remove('flex');
                 }
             }
         }
@@ -2175,11 +2190,11 @@
         }
 
         function updateTelemetryUI() {
-            const hudLive = document.getElementById('hudLiveCount');
+            const headerLive = document.getElementById('headerLiveCount');
             const dashLive = document.getElementById('dashLiveCount');
             const dashVisits = document.getElementById('dashTotalVisits');
 
-            if (hudLive) hudLive.textContent = liveVisitorCount;
+            if (headerLive) headerLive.textContent = liveVisitorCount;
             if (dashLive) dashLive.textContent = liveVisitorCount;
             if (dashVisits) dashVisits.textContent = totalPortfolioVisits.toLocaleString();
         }
@@ -2851,36 +2866,7 @@
     </div>
 
 
-    <!-- ======================================================== -->
-    <!-- HEYTECK PRIVATE REAL-TIME ANALYTICS HUD (100% PRIVATE) -->
-    <!-- Revealed exclusively to HeyTeck when typing 'heyteck4444' -->
-    <!-- ======================================================== -->
-    <div id="adminAnalyticsHud" class="hidden fixed bottom-5 left-5 z-40 items-center gap-2">
-        <button type="button" onclick="openAnalyticsDashboard()" 
-            class="bg-[#11131a]/95 hover:bg-[#181c28] border border-emerald-500/60 text-white font-bold text-xs px-4 py-2.5 rounded-full backdrop-blur-2xl shadow-2xl shadow-emerald-950/60 flex items-center gap-2.5 transition-all hover:scale-105 active:scale-95 cursor-pointer ring-1 ring-emerald-500/30">
-            <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-            </span>
-            <span class="text-emerald-400">Live: <strong id="hudLiveCount" class="text-white">1</strong></span>
-            <span class="text-neutral-600">|</span>
-            <span class="text-neutral-300 flex items-center gap-1">📊 <span class="hidden sm:inline">My</span> Analytics</span>
-        </button>
-    </div>
-
-    <!-- PRIVATE ANALYTICS DASHBOARD MODAL -->
-    <div id="analyticsModal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md">
-        <div class="absolute inset-0 cursor-pointer" onclick="closeAnalyticsDashboard()"></div>
-
-        <div class="relative w-full max-w-2xl bg-[#0f1118] border border-[#222638] rounded-3xl shadow-2xl shadow-black flex flex-col max-h-[90vh] overflow-hidden z-10 transform scale-95 transition-all duration-300">
-            <!-- Header -->
-            <div class="px-6 py-5 border-b border-[#1e2334] flex items-center justify-between bg-[#131620]">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#ff2d95] to-[#5eead4] p-0.5 shadow-md flex items-center justify-center">
-                        <div class="w-full h-full bg-[#0b0c10] rounded-[14px] flex items-center justify-center text-base">
-                            📊
-                        </div>
-                    </div>
+    
                     <div>
                         <div class="flex items-center gap-2">
                             <h3 class="text-base sm:text-lg font-bold text-white tracking-wide">HeyTeck Analytics</h3>
