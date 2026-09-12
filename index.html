@@ -2137,37 +2137,39 @@
         }
 
         // ========================================================
-        // 100% REAL-TIME DYNAMIC TELEMETRY & ANALYTICS ENGINE
+        // 100% PURE REAL-TIME TELEMETRY ENGINE (STARTS FROM ZERO)
         // ========================================================
         let liveVisitorCount = 1;
-        let totalPortfolioVisits = parseInt(localStorage.getItem('heyteck_total_visits') || '1284', 10);
+        
+        // Clean out any old mock data from previous sessions
+        try {
+            if (localStorage.getItem('heyteck_analytics_store')) {
+                localStorage.removeItem('heyteck_analytics_store');
+            }
+            if (localStorage.getItem('heyteck_total_visits') === '1284') {
+                localStorage.removeItem('heyteck_total_visits');
+            }
+        } catch (e) {}
 
-        // Persistent Analytics Store for Real Devices & Locations
+        let totalPortfolioVisits = parseInt(localStorage.getItem('heyteck_real_visits_v1') || '0', 10);
+
         function getAnalyticsStore() {
             try {
-                const stored = localStorage.getItem('heyteck_analytics_store');
+                const stored = localStorage.getItem('heyteck_real_store_v1');
                 if (stored) return JSON.parse(stored);
             } catch (e) {}
 
+            // Starts 100% empty (Zero data)
             return {
-                devices: { Mobile: 58, Desktop: 24, Tablet: 3 },
-                locations: {
-                    "India": { count: 62, flag: "🇮🇳", cities: ["Delhi", "Mumbai", "Bhopal", "Bengaluru"] },
-                    "United States": { count: 12, flag: "🇺🇸", cities: ["San Francisco", "New York"] },
-                    "UAE / Dubai": { count: 5, flag: "🇦🇪", cities: ["Dubai", "Abu Dhabi"] },
-                    "United Kingdom": { count: 3, flag: "🇬🇧", cities: ["London"] }
-                },
-                activities: [
-                    { type: 'visit', text: 'Live visitor from India joined on Windows PC', timestamp: Date.now() - 45000 },
-                    { type: 'like', text: '❤️ Like registered on Autumn Leather Mini Boots', timestamp: Date.now() - 140000 },
-                    { type: 'comment', text: '💬 Comment posted by Siddharth (Brand Lead)', timestamp: Date.now() - 420000 }
-                ]
+                devices: { Mobile: 0, Desktop: 0, Tablet: 0 },
+                locations: {},
+                activities: []
             };
         }
 
         function saveAnalyticsStore(data) {
             try {
-                localStorage.setItem('heyteck_analytics_store', JSON.stringify(data));
+                localStorage.setItem('heyteck_real_store_v1', JSON.stringify(data));
             } catch (e) {}
         }
 
@@ -2178,7 +2180,7 @@
                 text: text,
                 timestamp: Date.now()
             });
-            if (store.activities.length > 15) store.activities = store.activities.slice(0, 15);
+            if (store.activities.length > 20) store.activities = store.activities.slice(0, 20);
             saveAnalyticsStore(store);
             renderDynamicActivities();
         }
@@ -2186,32 +2188,32 @@
         function detectVisitorDevice() {
             const ua = navigator.userAgent;
             if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
-                return { type: 'Tablet', label: 'iPad & Galaxy Tab', icon: '📟' };
+                return { type: 'Tablet', label: 'iPad / Tablet', icon: '📟' };
             }
             if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile/i.test(ua)) {
                 return { type: 'Mobile', label: /iPhone|iPad|iPod/i.test(ua) ? 'iOS (iPhone)' : 'Android Phone', icon: '📱' };
             }
-            const pcLabel = /Mac/i.test(ua) ? 'MacBook / Mac' : (/Win/i.test(ua) ? 'Windows PC' : 'Desktop Computer');
+            const pcLabel = /Mac/i.test(ua) ? 'MacBook / Mac' : (/Win/i.test(ua) ? 'Windows PC' : 'Desktop PC');
             return { type: 'Desktop', label: pcLabel, icon: '💻' };
         }
 
         async function trackVisitorSession() {
-            const sessionKey = 'heyteck_realtime_session_v3';
+            const sessionKey = 'heyteck_real_session_token';
             const isNewVisit = !sessionStorage.getItem(sessionKey);
             const deviceInfo = detectVisitorDevice();
 
             if (isNewVisit) {
                 totalPortfolioVisits += 1;
-                localStorage.setItem('heyteck_total_visits', totalPortfolioVisits.toString());
+                localStorage.setItem('heyteck_real_visits_v1', totalPortfolioVisits.toString());
                 sessionStorage.setItem(sessionKey, 'true');
 
                 const store = getAnalyticsStore();
 
-                // Increment real device count
+                // Increment actual device count
                 if (!store.devices[deviceInfo.type]) store.devices[deviceInfo.type] = 0;
                 store.devices[deviceInfo.type] += 1;
 
-                // Fetch Real-time IP Location (Fast & Free)
+                // Fetch Real-time IP Location (Live from visitor's real IP)
                 try {
                     const res = await fetch('https://ipwho.is/');
                     const data = await res.json();
@@ -2238,7 +2240,6 @@
                     }
                 } catch (ipErr) {
                     console.warn('Location detection fallback:', ipErr);
-                    // Fallback activity
                     store.activities.unshift({
                         type: 'visit',
                         text: `Live visitor joined on ${deviceInfo.label}`,
@@ -2246,12 +2247,12 @@
                     });
                 }
 
-                if (store.activities.length > 15) store.activities = store.activities.slice(0, 15);
+                if (store.activities.length > 20) store.activities = store.activities.slice(0, 20);
                 saveAnalyticsStore(store);
 
                 if (firebaseDb) {
-                    firebaseDb.ref('analytics/totalVisits').transaction(curr => (curr || 1284) + 1);
-                    firebaseDb.ref('analytics/devices/' + deviceInfo.type).transaction(curr => (curr || 0) + 1);
+                    firebaseDb.ref('analytics/realVisits').transaction(curr => (curr || 0) + 1);
+                    firebaseDb.ref('analytics/realDevices/' + deviceInfo.type).transaction(curr => (curr || 0) + 1);
                 }
             }
 
@@ -2302,6 +2303,11 @@
                 return { country: key, ...store.locations[key] };
             });
 
+            if (entries.length === 0) {
+                container.innerHTML = '<div class="text-neutral-500 text-xs py-4 text-center">No location visits recorded yet. Tracking from 0...</div>';
+                return;
+            }
+
             entries.sort((a, b) => b.count - a.count);
             const totalLocVisits = entries.reduce((acc, cur) => acc + cur.count, 0) || 1;
 
@@ -2309,7 +2315,7 @@
             const textColors = ['text-emerald-400', 'text-blue-400', 'text-[#ffee00]', 'text-[#ff2d95]', 'text-purple-400'];
 
             let htmlStr = '';
-            entries.slice(0, 4).forEach((loc, idx) => {
+            entries.slice(0, 5).forEach((loc, idx) => {
                 const pct = Math.round((loc.count / totalLocVisits) * 100);
                 const color = colors[idx % colors.length];
                 const textColor = textColors[idx % textColors.length];
@@ -2335,18 +2341,25 @@
 
         function renderDynamicDevices() {
             const store = getAnalyticsStore();
-            const mob = store.devices.Mobile || 1;
-            const desk = store.devices.Desktop || 1;
+            const mob = store.devices.Mobile || 0;
+            const desk = store.devices.Desktop || 0;
             const tab = store.devices.Tablet || 0;
             const total = mob + desk + tab;
-
-            const mobPct = Math.round((mob / total) * 100);
-            const deskPct = Math.round((desk / total) * 100);
-            const tabPct = 100 - mobPct - deskPct;
 
             const mobEl = document.getElementById('dashMobilePct');
             const deskEl = document.getElementById('dashDesktopPct');
             const tabEl = document.getElementById('dashTabletPct');
+
+            if (total === 0) {
+                if (mobEl) mobEl.textContent = '0%';
+                if (deskEl) deskEl.textContent = '0%';
+                if (tabEl) tabEl.textContent = '0%';
+                return;
+            }
+
+            const mobPct = Math.round((mob / total) * 100);
+            const deskPct = Math.round((desk / total) * 100);
+            const tabPct = 100 - mobPct - deskPct;
 
             if (mobEl) mobEl.textContent = mobPct + '%';
             if (deskEl) deskEl.textContent = deskPct + '%';
@@ -2367,7 +2380,7 @@
 
             const store = getAnalyticsStore();
             if (!store.activities || store.activities.length === 0) {
-                container.innerHTML = '<div class="text-neutral-500 text-xs py-2">No recent activity</div>';
+                container.innerHTML = '<div class="text-neutral-500 text-xs py-3 text-center">No activity recorded yet. Waiting for visitor interactions...</div>';
                 return;
             }
 
@@ -2393,22 +2406,27 @@
             const modal = document.getElementById('analyticsModal');
             if (!modal) return;
 
-            // Compute total likes and comments across all video seeds and state
-            let totalLikes = 0;
-            let totalComments = 0;
+            // Count ONLY real likes and real comments from actual users
+            let realLikes = 0;
+            let realComments = 0;
 
-            Object.keys(seedStats).forEach(id => {
-                const seed = seedStats[id];
-                const likeBtn = document.querySelector(`[data-video-id="${id}"] .like-btn`);
-                const likes = likeBtn ? parseInt(likeBtn.dataset.likeCount || seed.likes, 10) : seed.likes;
-                totalLikes += likes;
+            for (let i = 0; i < localStorage.length; i++) {
+                const k = localStorage.key(i);
+                if (k && k.startsWith('heyteck_liked_') && localStorage.getItem(k) === 'true') {
+                    realLikes++;
+                }
+                if (k && k.startsWith('heyteck_comments_')) {
+                    try {
+                        const parsed = JSON.parse(localStorage.getItem(k) || '[]');
+                        realComments += countTotalCommentsAndReplies(parsed);
+                    } catch(e) {}
+                }
+            }
 
-                const localComments = getLocalComments(id);
-                totalComments += countTotalCommentsAndReplies(localComments);
-            });
-
-            document.getElementById('dashTotalLikes').textContent = totalLikes.toLocaleString();
-            document.getElementById('dashTotalComments').textContent = totalComments.toLocaleString();
+            const likesEl = document.getElementById('dashTotalLikes');
+            const commentsEl = document.getElementById('dashTotalComments');
+            if (likesEl) likesEl.textContent = realLikes.toLocaleString();
+            if (commentsEl) commentsEl.textContent = realComments.toLocaleString();
             
             updateTelemetryUI();
             renderDynamicLocations();
@@ -3124,7 +3142,7 @@
                         <div class="text-[11px] font-bold text-[#5eead4] uppercase tracking-wider mb-1 flex items-center gap-1.5">
                             👁️ Total Visits
                         </div>
-                        <div class="text-2xl sm:text-3xl font-black text-white" id="dashTotalVisits">1,284</div>
+                        <div class="text-2xl sm:text-3xl font-black text-white" id="dashTotalVisits">0</div>
                         <p class="text-[10px] text-neutral-400 mt-1">All-time portfolio loads</p>
                     </div>
 
@@ -3133,7 +3151,7 @@
                         <div class="text-[11px] font-bold text-[#ff2d95] uppercase tracking-wider mb-1 flex items-center gap-1.5">
                             ❤️ Total Likes
                         </div>
-                        <div class="text-2xl sm:text-3xl font-black text-white" id="dashTotalLikes">4,812</div>
+                        <div class="text-2xl sm:text-3xl font-black text-white" id="dashTotalLikes">0</div>
                         <p class="text-[10px] text-neutral-400 mt-1">Across all 20 videos</p>
                     </div>
 
@@ -3142,7 +3160,7 @@
                         <div class="text-[11px] font-bold text-[#ffee00] uppercase tracking-wider mb-1 flex items-center gap-1.5">
                             💬 Comments
                         </div>
-                        <div class="text-2xl sm:text-3xl font-black text-white" id="dashTotalComments">28</div>
+                        <div class="text-2xl sm:text-3xl font-black text-white" id="dashTotalComments">0</div>
                         <p class="text-[10px] text-neutral-400 mt-1">Direct feedback received</p>
                     </div>
                 </div>
@@ -3159,42 +3177,7 @@
                             <span class="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">📡 IP Live</span>
                         </div>
                         <div class="space-y-2.5" id="dashLocationsContainer">
-                            <div>
-                                <div class="flex items-center justify-between text-xs font-medium mb-1">
-                                    <span class="text-white flex items-center gap-1.5">🇮🇳 India (Delhi, Mumbai, BLR)</span>
-                                    <span class="text-emerald-400 font-bold" id="dashPctIndia">78%</span>
-                                </div>
-                                <div class="w-full h-1.5 bg-[#1e2436] rounded-full overflow-hidden">
-                                    <div class="h-full bg-emerald-400 rounded-full" style="width: 78%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex items-center justify-between text-xs font-medium mb-1">
-                                    <span class="text-white flex items-center gap-1.5">🇺🇸 United States (CA, NY, TX)</span>
-                                    <span class="text-blue-400 font-bold" id="dashPctUS">14%</span>
-                                </div>
-                                <div class="w-full h-1.5 bg-[#1e2436] rounded-full overflow-hidden">
-                                    <div class="h-full bg-blue-400 rounded-full" style="width: 14%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex items-center justify-between text-xs font-medium mb-1">
-                                    <span class="text-white flex items-center gap-1.5">🇦🇪 UAE / Dubai</span>
-                                    <span class="text-[#ffee00] font-bold" id="dashPctUAE">5%</span>
-                                </div>
-                                <div class="w-full h-1.5 bg-[#1e2436] rounded-full overflow-hidden">
-                                    <div class="h-full bg-[#ffee00] rounded-full" style="width: 5%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex items-center justify-between text-xs font-medium mb-1">
-                                    <span class="text-white flex items-center gap-1.5">🇬🇧 United Kingdom</span>
-                                    <span class="text-neutral-300 font-bold">3%</span>
-                                </div>
-                                <div class="w-full h-1.5 bg-[#1e2436] rounded-full overflow-hidden">
-                                    <div class="h-full bg-neutral-400 rounded-full" style="width: 3%"></div>
-                                </div>
-                            </div>
+                            <div class="text-neutral-500 text-xs py-4 text-center">No location visits recorded yet. Tracking from 0...</div>
                         </div>
                     </div>
 
@@ -3212,7 +3195,7 @@
                                         <div class="text-[10px] text-neutral-400">iOS (iPhone) & Android</div>
                                     </div>
                                 </div>
-                                <div class="text-sm font-black text-[#5eead4]" id="dashMobilePct">72%</div>
+                                <div class="text-sm font-black text-[#5eead4]" id="dashMobilePct">0%</div>
                             </div>
 
                             <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#0e1017] border border-[#1e2334]">
@@ -3223,7 +3206,7 @@
                                         <div class="text-[10px] text-neutral-400">MacBook & Windows PC</div>
                                     </div>
                                 </div>
-                                <div class="text-sm font-black text-blue-400" id="dashDesktopPct">25%</div>
+                                <div class="text-sm font-black text-blue-400" id="dashDesktopPct">0%</div>
                             </div>
 
                             <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#0e1017] border border-[#1e2334]">
@@ -3234,7 +3217,7 @@
                                         <div class="text-[10px] text-neutral-400">iPad & Galaxy Tab</div>
                                     </div>
                                 </div>
-                                <div class="text-sm font-black text-[#ff2d95]" id="dashTabletPct">3%</div>
+                                <div class="text-sm font-black text-[#ff2d95]" id="dashTabletPct">0%</div>
                             </div>
                         </div>
                     </div>
@@ -3258,10 +3241,10 @@
                                     <span class="text-white font-bold flex items-center gap-2">
                                         <span class="text-base">👨</span> Male Visitors
                                     </span>
-                                    <span class="text-blue-400 font-extrabold text-sm" id="dashMalePct">62%</span>
+                                    <span class="text-blue-400 font-extrabold text-sm" id="dashMalePct">0%</span>
                                 </div>
                                 <div class="w-full h-2 bg-[#1e2436] rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-blue-500 to-[#5eead4] rounded-full" style="width: 62%"></div>
+                                    <div class="h-full bg-gradient-to-r from-blue-500 to-[#5eead4] rounded-full" style="width: 0%"></div>
                                 </div>
                                 <p class="text-[10px] text-neutral-400 mt-1.5">D2C Founders, Media Buyers, Brand Leads</p>
                             </div>
@@ -3271,10 +3254,10 @@
                                     <span class="text-white font-bold flex items-center gap-2">
                                         <span class="text-base">👩</span> Female Visitors
                                     </span>
-                                    <span class="text-[#ff2d95] font-extrabold text-sm" id="dashFemalePct">38%</span>
+                                    <span class="text-[#ff2d95] font-extrabold text-sm" id="dashFemalePct">0%</span>
                                 </div>
                                 <div class="w-full h-2 bg-[#1e2436] rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-pink-500 to-[#ff2d95] rounded-full" style="width: 38%"></div>
+                                    <div class="h-full bg-gradient-to-r from-pink-500 to-[#ff2d95] rounded-full" style="width: 0%"></div>
                                 </div>
                                 <p class="text-[10px] text-neutral-400 mt-1.5">Beauty & Fashion Marketers, Creative Heads</p>
                             </div>
@@ -3294,37 +3277,37 @@
                             <div>
                                 <div class="flex items-center justify-between text-xs font-medium mb-1">
                                     <span class="text-white font-semibold">18 – 24 yrs (Gen-Z & Creators)</span>
-                                    <span class="text-[#5eead4] font-bold">54%</span>
+                                    <span class="text-[#5eead4] font-bold">0%</span>
                                 </div>
                                 <div class="w-full h-1.5 bg-[#1e2436] rounded-full overflow-hidden">
-                                    <div class="h-full bg-[#5eead4] rounded-full" style="width: 54%"></div>
+                                    <div class="h-full bg-[#5eead4] rounded-full" style="width: 0%"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex items-center justify-between text-xs font-medium mb-1">
                                     <span class="text-white font-semibold">25 – 34 yrs (D2C Founders & Marketers)</span>
-                                    <span class="text-[#ffee00] font-bold">36%</span>
+                                    <span class="text-[#ffee00] font-bold">0%</span>
                                 </div>
                                 <div class="w-full h-1.5 bg-[#1e2436] rounded-full overflow-hidden">
-                                    <div class="h-full bg-[#ffee00] rounded-full" style="width: 36%"></div>
+                                    <div class="h-full bg-[#ffee00] rounded-full" style="width: 0%"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex items-center justify-between text-xs font-medium mb-1">
                                     <span class="text-white font-semibold">35 – 44 yrs (Brand & Agency Leads)</span>
-                                    <span class="text-blue-400 font-bold">8%</span>
+                                    <span class="text-blue-400 font-bold">0%</span>
                                 </div>
                                 <div class="w-full h-1.5 bg-[#1e2436] rounded-full overflow-hidden">
-                                    <div class="h-full bg-blue-400 rounded-full" style="width: 8%"></div>
+                                    <div class="h-full bg-blue-400 rounded-full" style="width: 0%"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex items-center justify-between text-xs font-medium mb-1">
                                     <span class="text-white font-semibold">45+ yrs (Executive Investors)</span>
-                                    <span class="text-neutral-400 font-bold">2%</span>
+                                    <span class="text-neutral-400 font-bold">0%</span>
                                 </div>
                                 <div class="w-full h-1.5 bg-[#1e2436] rounded-full overflow-hidden">
-                                    <div class="h-full bg-neutral-500 rounded-full" style="width: 2%"></div>
+                                    <div class="h-full bg-neutral-500 rounded-full" style="width: 0%"></div>
                                 </div>
                             </div>
                         </div>
@@ -3347,21 +3330,7 @@
                         <span class="text-[10px] text-neutral-400">Auto-refreshing</span>
                     </div>
                     <div class="space-y-2 text-xs font-medium" id="dashActivityLog">
-                        <div class="flex items-center gap-2 text-neutral-300 py-1.5 border-b border-[#1e2334]">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                            <span class="text-white font-bold">Live visitor</span> active on Autumn Leather Mini Boots video (India)
-                            <span class="text-[10px] text-neutral-500 ml-auto">Just now</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-neutral-300 py-1.5 border-b border-[#1e2334]">
-                            <span class="text-[#ff2d95]">❤️</span>
-                            <span>Direct response creative like registered on Sparkling Diamond Jewelry</span>
-                            <span class="text-[10px] text-neutral-500 ml-auto">2m ago</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-neutral-300 py-1.5 border-b border-[#1e2334]">
-                            <span class="text-[#ffee00]">💬</span>
-                            <span>Comment posted by Siddharth (Brand Lead)</span>
-                            <span class="text-[10px] text-neutral-500 ml-auto">2h ago</span>
-                        </div>
+                        <div class="text-neutral-500 text-xs py-3 text-center">No live activities yet. Waiting for visitor interactions...</div>
                     </div>
                 </div>
 
