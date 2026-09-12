@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeyTeck Portfolio — High-Converting UGC Creator Portfolio</title>
     <link rel="icon" href="logo.png" type="image/png">
-        <!-- Google Analytics 4 (GA4) Tracker -->
-    <!-- Paste your Measurement ID (e.g. G-XXXXXXXXXX) below to track Country, Device, Age, Gender & Real-time Visitors -->
+        <!-- Google Analytics 4 (GA4) -->
+    <!-- Paste Measurement ID (G-XXXXXXXXXX) below to track Country, City, Age, Gender & Realtime Visitors -->
     <!--
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
@@ -144,25 +144,27 @@
 
         /* Floating actions positioned on right edge like Instagram Reels */
         .insta-actions {
-            position: absolute;
-            right: 10px;
-            bottom: 64px;
-            z-index: 30;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(10px);
-            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute !important;
+            right: 12px !important;
+            bottom: 68px !important;
+            z-index: 50 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 12px !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            transform: translateY(12px) !important;
+            transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1), transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s !important;
         }
 
-        /* Revealed instantly when visitor taps / plays the video */
+        /* Revealed when visitor taps / plays the video */
         .insta-actions.active {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+            transform: translateY(0) !important;
         }
 
         .insta-btn {
@@ -191,33 +193,33 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: rgba(11, 12, 16, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            background: rgba(11, 12, 16, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
             transition: all 0.25s ease;
         }
 
         .insta-btn:hover .insta-icon-bubble {
-            background: rgba(19, 21, 28, 0.9);
-            border-color: rgba(255, 255, 255, 0.45);
-            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.8);
+            background: rgba(19, 21, 28, 0.95);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.85);
         }
 
         /* Instagram Like Activated State */
         .insta-btn.liked .heart-svg {
             fill: #ff2b55 !important;
             stroke: #ff2b55 !important;
-            filter: drop-shadow(0 0 10px rgba(255, 43, 85, 0.75));
+            filter: drop-shadow(0 0 10px rgba(255, 43, 85, 0.8));
         }
 
         .insta-btn.liked .insta-icon-bubble {
             border-color: rgba(255, 43, 85, 0.6);
-            background: rgba(255, 43, 85, 0.18);
+            background: rgba(255, 43, 85, 0.2);
         }
 
         .insta-btn.liked .like-count {
@@ -358,8 +360,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="fashion_boots">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'fashion_boots')" title="Like this creative">
@@ -382,8 +385,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">LuxeFootwear</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
                     </div>
@@ -427,8 +429,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="fashion_diamond">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'fashion_diamond')" title="Like this creative">
@@ -451,8 +454,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Luxe Jewels</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
                     </div>
@@ -496,8 +498,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="fashion_sneakers">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'fashion_sneakers')" title="Like this creative">
@@ -520,8 +523,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">StreetKicks</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
                     </div>
@@ -565,8 +567,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="fashion_blazer">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'fashion_blazer')" title="Like this creative">
@@ -589,8 +592,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Vogue Minimal</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
                     </div>
@@ -639,8 +641,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="beauty_cetaphil">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'beauty_cetaphil')" title="Like this creative">
@@ -663,8 +666,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Cetaphil</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
                     </div>
@@ -708,8 +710,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="beauty_shampoo">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'beauty_shampoo')" title="Like this creative">
@@ -732,8 +735,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Botanical Hair</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
                     </div>
@@ -777,8 +779,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="beauty_minimalist">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'beauty_minimalist')" title="Like this creative">
@@ -801,8 +804,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Minimalist</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
                     </div>
@@ -846,8 +848,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="beauty_perfume">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'beauty_perfume')" title="Like this creative">
@@ -870,8 +873,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Luxe Parfum</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
                     </div>
@@ -920,8 +922,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="tech_iphone">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'tech_iphone')" title="Like this creative">
@@ -944,8 +947,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Apple</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
                     </div>
@@ -989,8 +991,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="tech_samsung">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'tech_samsung')" title="Like this creative">
@@ -1013,8 +1016,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Samsung</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
                     </div>
@@ -1058,8 +1060,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="tech_watch">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'tech_watch')" title="Like this creative">
@@ -1082,8 +1085,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">PulseTime</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
                     </div>
@@ -1127,8 +1129,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="tech_fans">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'tech_fans')" title="Like this creative">
@@ -1151,8 +1154,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">BreezeTech</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">TECH</span>
                     </div>
@@ -1201,8 +1203,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="motion_monster">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'motion_monster')" title="Like this creative">
@@ -1225,8 +1228,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Monster Energy</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
                     </div>
@@ -1270,8 +1272,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="motion_cocacola">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'motion_cocacola')" title="Like this creative">
@@ -1294,8 +1297,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Coca-Cola</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
                     </div>
@@ -1339,8 +1341,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="motion_redbull">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'motion_redbull')" title="Like this creative">
@@ -1363,8 +1366,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Red Bull</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
                     </div>
@@ -1408,8 +1410,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="motion_prime">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'motion_prime')" title="Like this creative">
@@ -1432,8 +1435,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Prime Hydration</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">MOTION</span>
                     </div>
@@ -1482,8 +1484,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="food_lays">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'food_lays')" title="Like this creative">
@@ -1506,8 +1509,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Lay's</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
                     </div>
@@ -1551,8 +1553,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="food_oreo">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'food_oreo')" title="Like this creative">
@@ -1575,8 +1578,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Oreo</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
                     </div>
@@ -1620,8 +1622,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="food_feastables">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'food_feastables')" title="Like this creative">
@@ -1644,8 +1647,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">Feastables</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
                     </div>
@@ -1689,8 +1691,9 @@
                                 </span>
                                 <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
                             </div>
-                        
-                        <!-- Instagram-Style Actions (Like & Comment) Revealed on Video Tap -->
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
                         <div class="insta-actions" data-video-id="food_kitkat">
                             <!-- Heart Like Button -->
                             <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'food_kitkat')" title="Like this creative">
@@ -1713,8 +1716,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                <div class="flex items-center justify-between mb-1.5">
+                    <div class="flex items-center justify-between mb-1.5">
                         <span class="text-[11px] font-semibold text-blue-400">KitKat</span>
                         <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FOOD</span>
                     </div>
@@ -1944,7 +1946,6 @@
                 video.pause();
                 video.removeAttribute('controls');
                 if (overlay) overlay.style.display = 'flex';
-                // Note: actions can stay active or fade out on overlay restore
                 if (actions) actions.classList.remove('active');
             }
         }
@@ -1952,8 +1953,6 @@
         // ========================================================
         // 2. GOOGLE FIREBASE CONFIGURATION & REALTIME DATABASE
         // ========================================================
-        // Replace this config object with your Google Firebase Project credentials
-        // Get it free at: https://console.firebase.google.com/ -> Project Settings -> General -> Web App
         const firebaseConfig = {
             apiKey: "YOUR_FIREBASE_API_KEY",
             authDomain: "heyteck-portfolio.firebaseapp.com",
@@ -1978,35 +1977,51 @@
             }
         }
 
-        // Realistic seed data for portfolio creatives
+        // Initial Seed Comments with Creator Replies
         const seedStats = {
             fashion_boots: { likes: 148, comments: [
-                { name: "Siddharth (Brand Lead)", text: "The leather macro texture shot is insane! Converting high.", time: "2h ago" },
-                { name: "Ananya M.", text: "Love the Autumn color palette. What camera was used?", time: "5h ago" }
+                { id: "c1", name: "Siddharth (Brand Lead)", text: "The leather macro texture shot is insane! Converting high.", time: "2h ago",
+                  replies: [
+                      { id: "r1", name: "HeyTeck", isCreator: true, text: "Thanks bro! Handled lighting specifically for direct-response thumbstop 🔥", time: "1h ago" }
+                  ]
+                },
+                { id: "c2", name: "Ananya M.", text: "Love the Autumn color palette. What camera was used?", time: "5h ago",
+                  replies: [
+                      { id: "r2", name: "HeyTeck", isCreator: true, text: "Shot on Sony FX3 with anamorphic grade!", time: "3h ago" }
+                  ]
+                }
             ]},
             fashion_diamond: { likes: 215, comments: [
-                { name: "Karan Jewels", text: "Brilliant refraction angle on the pendant diamond!", time: "1d ago" }
+                { id: "c3", name: "Karan Jewels", text: "Brilliant refraction angle on the pendant diamond!", time: "1d ago",
+                  replies: [
+                      { id: "r3", name: "HeyTeck", isCreator: true, text: "Appreciate it! High clarity lighting makes luxury pop.", time: "18h ago" }
+                  ]
+                }
             ]},
             fashion_sneakers: { likes: 184, comments: [
-                { name: "SneakerHead India", text: "The jump-cut hook stopped my scroll immediately 🔥", time: "3d ago" }
+                { id: "c4", name: "SneakerHead India", text: "The jump-cut hook stopped my scroll immediately 🔥", time: "3d ago", replies: [] }
             ]},
             fashion_blazer: { likes: 129, comments: [] },
             beauty_cetaphil: { likes: 260, comments: [
-                { name: "GlowAesthetics", text: "Clean skincare aesthetics. Perfect UGC pacing!", time: "1d ago" }
+                { id: "c5", name: "GlowAesthetics", text: "Clean skincare aesthetics. Perfect UGC pacing!", time: "1d ago", replies: [] }
             ]},
             beauty_shampoo: { likes: 172, comments: [] },
             beauty_minimalist: { likes: 310, comments: [
-                { name: "Rohit V.", text: "Higgsfield style grade looks ultra premium.", time: "4d ago" }
+                { id: "c6", name: "Rohit V.", text: "Higgsfield style grade looks ultra premium.", time: "4d ago", replies: [] }
             ]},
             beauty_perfume: { likes: 195, comments: [] },
             tech_iphone: { likes: 342, comments: [
-                { name: "TechNova Studio", text: "Sound design on the unboxing is top tier 🎧", time: "12h ago" }
+                { id: "c7", name: "TechNova Studio", text: "Sound design on the unboxing is top tier 🎧", time: "12h ago",
+                  replies: [
+                      { id: "r4", name: "HeyTeck", isCreator: true, text: "ASMR audio layer delivers 2x retention!", time: "10h ago" }
+                  ]
+                }
             ]},
             tech_samsung: { likes: 228, comments: [] },
             tech_watch: { likes: 189, comments: [] },
             tech_fans: { likes: 154, comments: [] },
             motion_monster: { likes: 276, comments: [
-                { name: "EnergyLab", text: "Speed ramp on the can pop was super energetic!", time: "2d ago" }
+                { id: "c8", name: "EnergyLab", text: "Speed ramp on the can pop was super energetic!", time: "2d ago", replies: [] }
             ]},
             motion_cocacola: { likes: 388, comments: [] },
             motion_redbull: { likes: 294, comments: [] },
@@ -2014,12 +2029,11 @@
             food_lays: { likes: 198, comments: [] },
             food_oreo: { likes: 245, comments: [] },
             food_feastables: { likes: 367, comments: [
-                { name: "MrBeast Fan Club", text: "Feastables bar snap hook is unmatched haha", time: "3d ago" }
+                { id: "c9", name: "MrBeast Fan Club", text: "Feastables bar snap hook is unmatched haha", time: "3d ago", replies: [] }
             ]},
             food_kitkat: { likes: 210, comments: [] }
         };
 
-        // Helper to format numbers (e.g. 1.2K)
         function formatMetric(num) {
             if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
             return num.toString();
@@ -2041,10 +2055,10 @@
             let currentLikes = parseInt(btn.dataset.likeCount || 0, 10);
             
             if (!isLiked) {
-                // LIKE ACTION: Turn RED, Heart Pop Animation, +1
+                // Turn RED, Heart Pop Animation, +1
                 btn.classList.add('liked');
                 heartSvg.classList.remove('heart-pop');
-                void heartSvg.offsetWidth; // Trigger reflow for CSS animation restart
+                void heartSvg.offsetWidth; // Trigger reflow for animation restart
                 heartSvg.classList.add('heart-pop');
                 
                 currentLikes += 1;
@@ -2052,12 +2066,11 @@
                 if (countSpan) countSpan.textContent = formatMetric(currentLikes);
                 localStorage.setItem(storageKey, 'true');
 
-                // Sync with Firebase if connected
                 if (firebaseDb) {
                     firebaseDb.ref('videos/' + videoId + '/likes').transaction(curr => (curr || 0) + 1);
                 }
             } else {
-                // UNLIKE ACTION: Turn back to empty outline, -1
+                // Turn back to empty outline, -1
                 btn.classList.remove('liked');
                 heartSvg.classList.remove('heart-pop');
                 
@@ -2066,7 +2079,6 @@
                 if (countSpan) countSpan.textContent = formatMetric(currentLikes);
                 localStorage.removeItem(storageKey);
 
-                // Sync with Firebase if connected
                 if (firebaseDb) {
                     firebaseDb.ref('videos/' + videoId + '/likes').transaction(curr => Math.max(0, (curr || 1) - 1));
                 }
@@ -2074,17 +2086,18 @@
         }
 
         // ========================================================
-        // 4. INSTAGRAM COMMENTS MODAL & SUBMISSION
+        // 4. INSTAGRAM COMMENTS & REPLY SYSTEM
         // ========================================================
         let currentModalVideoId = null;
 
         function handleCommentClick(event, videoId) {
-            event.stopPropagation(); // Don't toggle video
+            event.stopPropagation();
             openCommentModal(videoId);
         }
 
         function openCommentModal(videoId) {
             currentModalVideoId = videoId;
+            cancelReply();
             const modal = document.getElementById('commentsModal');
             const videoWrapper = document.querySelector(`[data-video-id="${videoId}"]`);
             let videoTitle = 'UGC Creative';
@@ -2099,10 +2112,8 @@
             document.getElementById('modalVideoId').value = videoId;
             document.getElementById('modalVideoTitle').textContent = videoTitle;
 
-            // Load comments
             renderComments(videoId);
 
-            // Open with animation
             modal.classList.remove('hidden');
             requestAnimationFrame(() => {
                 modal.classList.remove('opacity-0');
@@ -2122,10 +2133,10 @@
             setTimeout(() => {
                 modal.classList.add('hidden');
                 currentModalVideoId = null;
+                cancelReply();
             }, 300);
         }
 
-        // Close on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeCommentModal();
         });
@@ -2136,7 +2147,34 @@
             if (saved) {
                 try { return JSON.parse(saved); } catch(e) {}
             }
-            return (seedStats[videoId] && seedStats[videoId].comments) ? [...seedStats[videoId].comments] : [];
+            return (seedStats[videoId] && seedStats[videoId].comments) ? JSON.parse(JSON.stringify(seedStats[videoId].comments)) : [];
+        }
+
+        function setCreatorMode() {
+            const nameInput = document.getElementById('commenterName');
+            nameInput.value = 'HeyTeck';
+            const toggle = document.getElementById('creatorToggleBtn');
+            toggle.classList.add('border-[#ff2d95]', 'text-[#ff2d95]');
+            document.getElementById('commenterText').focus();
+        }
+
+        function startReply(commentId, authorName) {
+            document.getElementById('replyParentId').value = commentId;
+            document.getElementById('replyingToName').textContent = '@' + authorName;
+            document.getElementById('replyingBanner').classList.remove('hidden');
+            
+            const textInput = document.getElementById('commenterText');
+            textInput.placeholder = 'Replying to @' + authorName + '...';
+            textInput.focus();
+        }
+
+        function cancelReply() {
+            const replyInput = document.getElementById('replyParentId');
+            if (replyInput) replyInput.value = '';
+            const banner = document.getElementById('replyingBanner');
+            if (banner) banner.classList.add('hidden');
+            const textInput = document.getElementById('commenterText');
+            if (textInput) textInput.placeholder = 'Add a comment or reply...';
         }
 
         function renderComments(videoId) {
@@ -2145,12 +2183,11 @@
             list.innerHTML = '';
 
             if (firebaseDb) {
-                // Read from Firebase
                 firebaseDb.ref('videos/' + videoId + '/comments').once('value').then(snap => {
                     const val = snap.val();
                     let commentsArray = [];
                     if (val) {
-                        commentsArray = Object.values(val);
+                        commentsArray = Object.keys(val).map(key => Object.assign({ id: key }, val[key]));
                     } else {
                         commentsArray = getLocalComments(videoId);
                     }
@@ -2163,11 +2200,21 @@
             }
         }
 
+        function countTotalCommentsAndReplies(comments) {
+            let total = 0;
+            comments.forEach(c => {
+                total += 1;
+                if (c.replies && Array.isArray(c.replies)) total += c.replies.length;
+            });
+            return total;
+        }
+
         function displayCommentsList(comments, badge, container) {
             container.innerHTML = '';
-            badge.textContent = comments.length;
+            const totalCount = countTotalCommentsAndReplies(comments);
+            badge.textContent = totalCount;
             const cardBadge = document.getElementById('comments-count-' + currentModalVideoId);
-            if (cardBadge) cardBadge.textContent = comments.length;
+            if (cardBadge) cardBadge.textContent = totalCount;
 
             if (comments.length === 0) {
                 container.innerHTML = `
@@ -2183,28 +2230,67 @@
             }
 
             comments.forEach(c => {
+                const commentDiv = document.createElement('div');
+                commentDiv.className = 'pt-3.5 first:pt-0';
+                
                 const initial = (c.name || 'A').charAt(0).toUpperCase();
-                const item = document.createElement('div');
-                item.className = 'pt-3 first:pt-0 flex items-start gap-3';
-                item.innerHTML = `
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#ff2d95] to-[#5eead4] text-black font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-md">
-                        ${initial}
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2">
-                            <span class="text-xs font-bold text-white truncate">${escapeHtml(c.name || 'Anonymous')}</span>
-                            <span class="text-[10px] text-neutral-400 font-medium">${c.time || 'Just now'}</span>
+                const isCreator = c.isCreator || c.name === 'HeyTeck';
+                
+                let repliesHtml = '';
+                if (c.replies && c.replies.length > 0) {
+                    repliesHtml = '<div class="mt-2.5 pl-8 space-y-2.5 border-l-2 border-[#242938] ml-3">';
+                    c.replies.forEach(r => {
+                        const rInitial = (r.name || 'H').charAt(0).toUpperCase();
+                        const rIsCreator = r.isCreator || r.name === 'HeyTeck';
+                        repliesHtml += `
+                            <div class="flex items-start gap-2.5">
+                                <div class="w-6 h-6 rounded-full ${rIsCreator ? 'bg-gradient-to-tr from-[#ff2d95] to-[#ffee00] ring-1 ring-[#ff2d95]' : 'bg-[#1e2230]'} text-black font-bold text-[10px] flex items-center justify-center flex-shrink-0 shadow-sm">
+                                    ${rInitial}
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-1.5 flex-wrap">
+                                        <span class="text-[11px] font-bold text-white">${escapeHtml(r.name || 'HeyTeck')}</span>
+                                        ${rIsCreator ? '<span class="bg-[#ff2d95]/25 text-[#ff2d95] text-[8px] font-extrabold px-1.5 py-0.2 rounded border border-[#ff2d95]/40 tracking-wider">CREATOR ⚡</span>' : ''}
+                                        <span class="text-[9px] text-neutral-500">${r.time || 'Just now'}</span>
+                                    </div>
+                                    <p class="text-[11px] text-neutral-200 mt-0.5 leading-relaxed break-words">${escapeHtml(r.text || '')}</p>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    repliesHtml += '</div>';
+                }
+
+                commentDiv.innerHTML = `
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full ${isCreator ? 'bg-gradient-to-tr from-[#ff2d95] to-[#ffee00] ring-1 ring-[#ff2d95]' : 'bg-gradient-to-tr from-[#ff2d95] to-[#5eead4]'} text-black font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-md">
+                            ${initial}
                         </div>
-                        <p class="text-xs text-neutral-200 mt-1 leading-relaxed break-words">${escapeHtml(c.text || '')}</p>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-1.5 flex-wrap">
+                                <span class="text-xs font-bold text-white">${escapeHtml(c.name || 'Anonymous')}</span>
+                                ${isCreator ? '<span class="bg-[#ff2d95]/25 text-[#ff2d95] text-[9px] font-extrabold px-1.5 py-0.5 rounded border border-[#ff2d95]/40 tracking-wider">CREATOR ⚡</span>' : ''}
+                                <span class="text-[10px] text-neutral-400 font-medium">${c.time || 'Just now'}</span>
+                            </div>
+                            <p class="text-xs text-neutral-200 mt-1 leading-relaxed break-words">${escapeHtml(c.text || '')}</p>
+                            <div class="mt-1.5">
+                                <button type="button" onclick="startReply('${c.id || ''}', '${escapeHtml(c.name || 'User')}')"
+                                    class="text-[10px] font-bold text-blue-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
+                                    <span>Reply</span>
+                                </button>
+                            </div>
+                            ${repliesHtml}
+                        </div>
                     </div>
                 `;
-                container.appendChild(item);
+                container.appendChild(commentDiv);
             });
         }
 
         function handleCommentSubmit(e) {
             e.preventDefault();
             const videoId = document.getElementById('modalVideoId').value;
+            const parentReplyId = document.getElementById('replyParentId').value;
             const nameInput = document.getElementById('commenterName');
             const textInput = document.getElementById('commenterText');
             const submitBtn = document.getElementById('commentSubmitBtn');
@@ -2213,31 +2299,59 @@
             const text = textInput.value.trim();
             if (!name || !text || !videoId) return;
 
+            const isCreator = (name.toLowerCase() === 'heyteck' || name.toLowerCase().includes('creator'));
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span>Posting...</span>';
 
-            const newComment = {
-                name: name,
-                text: text,
-                time: 'Just now',
-                timestamp: Date.now()
-            };
-
-            // Save locally
             const localKey = 'heyteck_comments_' + videoId;
             const currentList = getLocalComments(videoId);
-            currentList.push(newComment);
-            localStorage.setItem(localKey, JSON.stringify(currentList));
 
-            // Sync with Firebase
-            if (firebaseDb) {
-                firebaseDb.ref('videos/' + videoId + '/comments').push(newComment);
+            if (parentReplyId) {
+                const newReply = {
+                    id: 'r_' + Date.now(),
+                    name: name,
+                    isCreator: isCreator,
+                    text: text,
+                    time: 'Just now',
+                    timestamp: Date.now()
+                };
+
+                const parent = currentList.find(c => c.id === parentReplyId);
+                if (parent) {
+                    if (!parent.replies) parent.replies = [];
+                    parent.replies.push(newReply);
+                } else if (currentList.length > 0) {
+                    if (!currentList[0].replies) currentList[0].replies = [];
+                    currentList[0].replies.push(newReply);
+                }
+
+                if (firebaseDb) {
+                    firebaseDb.ref('videos/' + videoId + '/comments/' + parentReplyId + '/replies').push(newReply);
+                }
+            } else {
+                const newComment = {
+                    id: 'c_' + Date.now(),
+                    name: name,
+                    isCreator: isCreator,
+                    text: text,
+                    time: 'Just now',
+                    timestamp: Date.now(),
+                    replies: []
+                };
+                currentList.push(newComment);
+
+                if (firebaseDb) {
+                    firebaseDb.ref('videos/' + videoId + '/comments').push(newComment);
+                }
             }
 
-            // Re-render
+            localStorage.setItem(localKey, JSON.stringify(currentList));
+
             setTimeout(() => {
                 renderComments(videoId);
                 textInput.value = '';
+                cancelReply();
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = `<span>Post</span>
                     <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -2265,7 +2379,6 @@
                 const wrapper = document.querySelector(`[data-video-id="${videoId}"]`);
                 const likeBtn = wrapper ? wrapper.querySelector('.like-btn') : null;
 
-                // Check local liked state
                 const isLiked = localStorage.getItem('heyteck_liked_' + videoId) === 'true';
                 let initialLikes = seed.likes;
 
@@ -2277,11 +2390,10 @@
                 if (likeBtn) likeBtn.dataset.likeCount = initialLikes;
                 if (countSpan) countSpan.textContent = formatMetric(initialLikes);
 
-                // Initial comment count
                 const localComments = getLocalComments(videoId);
-                if (commentSpan) commentSpan.textContent = localComments.length;
+                const totalComments = countTotalCommentsAndReplies(localComments);
+                if (commentSpan) commentSpan.textContent = totalComments;
 
-                // Attach Firebase realtime listener if configured
                 if (firebaseDb) {
                     firebaseDb.ref('videos/' + videoId).on('value', snapshot => {
                         const data = snapshot.val();
@@ -2292,8 +2404,12 @@
                                 countSpan.textContent = formatMetric(finalLikes);
                             }
                             if (data.comments && commentSpan) {
-                                const commentsArr = Object.values(data.comments);
-                                commentSpan.textContent = commentsArr.length;
+                                let totalC = 0;
+                                Object.values(data.comments).forEach(c => {
+                                    totalC += 1;
+                                    if (c.replies) totalC += Object.keys(c.replies).length;
+                                });
+                                commentSpan.textContent = totalC;
                             }
                         }
                     });
@@ -2382,14 +2498,14 @@
     </script>
 
     <!-- ======================================================== -->
-    <!-- INSTAGRAM / REELS STYLE COMMENTS BOTTOM SHEET MODAL -->
+    <!-- INSTAGRAM / REELS STYLE COMMENTS BOTTOM SHEET WITH REPLY -->
     <!-- ======================================================== -->
     <div id="commentsModal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-md">
         <!-- Backdrop dismiss click -->
         <div class="absolute inset-0 cursor-pointer" onclick="closeCommentModal()"></div>
 
         <!-- Modal Content Container -->
-        <div class="relative w-full max-w-lg bg-[#13151c] border border-[#222634] rounded-t-3xl sm:rounded-2xl shadow-2xl shadow-black flex flex-col max-h-[85vh] sm:max-h-[80vh] overflow-hidden z-10 transform translate-y-full sm:translate-y-0 sm:scale-95 transition-all duration-300">
+        <div class="relative w-full max-w-lg bg-[#13151c] border border-[#222634] rounded-t-3xl sm:rounded-2xl shadow-2xl shadow-black flex flex-col max-h-[88vh] sm:max-h-[82vh] overflow-hidden z-10 transform translate-y-full sm:translate-y-0 sm:scale-95 transition-all duration-300">
             <!-- Mobile Top Handle -->
             <div class="w-12 h-1.5 bg-neutral-700 rounded-full mx-auto mt-3 mb-1 sm:hidden"></div>
 
@@ -2410,23 +2526,40 @@
                 </button>
             </div>
 
-            <!-- Scrollable Comments List -->
-            <div id="commentsList" class="flex-1 overflow-y-auto p-5 space-y-3.5 min-h-[200px] max-h-[380px] divide-y divide-[#1e2230]/60">
-                <!-- Comments rendered here via JavaScript -->
+            <!-- Scrollable Comments List with Replies -->
+            <div id="commentsList" class="flex-1 overflow-y-auto p-5 space-y-4 min-h-[220px] max-h-[380px] divide-y divide-[#1e2230]/60">
+                <!-- Comments & replies rendered here via JavaScript -->
             </div>
 
-            <!-- Comment Input Form Footer -->
+            <!-- Comment & Reply Input Form Footer -->
             <div class="p-4 bg-[#0d0e14] border-t border-[#222634]">
+                <!-- Active Replying Banner -->
+                <div id="replyingBanner" class="hidden flex items-center justify-between bg-[#181c28] border border-[#2d3448] text-xs text-neutral-300 px-3 py-1.5 rounded-lg mb-2">
+                    <div class="flex items-center gap-1.5 truncate">
+                        <span class="text-[#ff2d95] font-bold">↳ Replying to</span>
+                        <span id="replyingToName" class="text-white font-bold truncate">@Rahul</span>
+                    </div>
+                    <button type="button" onclick="cancelReply()" class="text-neutral-400 hover:text-red-400 text-xs font-bold ml-2">Cancel ✕</button>
+                </div>
+
                 <form id="commentForm" onsubmit="handleCommentSubmit(event)" class="space-y-2">
                     <input type="hidden" id="modalVideoId" value="">
+                    <input type="hidden" id="replyParentId" value="">
                     
                     <div class="flex items-center gap-2">
-                        <input type="text" id="commenterName" placeholder="Your Name or Brand (e.g. Rahul • D2C Marketer)" required
+                        <input type="text" id="commenterName" placeholder="Your Name (e.g. Rahul • D2C Founder)" required
                             class="w-full bg-[#161922] border border-[#262b3d] rounded-xl px-3.5 py-2 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#5eead4] focus:ring-1 focus:ring-[#5eead4] transition-all">
+                        
+                        <!-- Quick Creator Toggle -->
+                        <button type="button" onclick="setCreatorMode()" id="creatorToggleBtn"
+                            class="bg-[#1c1f2b] hover:bg-[#282d3e] text-[10px] font-bold text-neutral-400 hover:text-[#5eead4] px-2.5 py-2 rounded-xl border border-[#2a2f42] whitespace-nowrap transition-colors"
+                            title="Click to quickly reply as HeyTeck Creator">
+                            ⚡ As HeyTeck
+                        </button>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <input type="text" id="commenterText" placeholder="Add a comment on this creative..." required
+                        <input type="text" id="commenterText" placeholder="Add a comment or reply..." required
                             class="flex-1 bg-[#161922] border border-[#262b3d] rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[#ff2d95] focus:ring-1 focus:ring-[#ff2d95] transition-all">
                         
                         <button type="submit" id="commentSubmitBtn"
