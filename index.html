@@ -2063,9 +2063,36 @@
         // ========================================================
         let isAdminMode = localStorage.getItem('heyteck_admin_active') === 'true';
 
-        function toggleAdminPinModal() {
+        // 100% SECRET ADMIN ENTRY METHODS (Completely invisible to public):
+        // Method 1: Open site with URL hash #admin or #heyteck (e.g. heyteck-portfolio.vercel.app/#admin)
+        function checkSecretUrlTrigger() {
+            const hash = (window.location.hash || '').toLowerCase();
+            const search = (window.location.search || '').toLowerCase();
+            if (hash === '#admin' || hash === '#heyteck' || search.includes('admin=4444')) {
+                isAdminMode = true;
+                localStorage.setItem('heyteck_admin_active', 'true');
+                // Clean URL hash so nobody looking at your screen sees it
+                try { history.replaceState(null, '', window.location.pathname); } catch(e) {}
+            }
+        }
+        checkSecretUrlTrigger();
+
+        // Method 2: Secret 3-Clicks / 3-Taps on "Comments" title
+        let secretAdminClicks = 0;
+        let secretAdminTimer = null;
+        function handleSecretAdminClick() {
+            secretAdminClicks++;
+            clearTimeout(secretAdminTimer);
+            secretAdminTimer = setTimeout(() => { secretAdminClicks = 0; }, 900);
+            if (secretAdminClicks >= 3) {
+                secretAdminClicks = 0;
+                promptAdminLogin();
+            }
+        }
+
+        function promptAdminLogin() {
             if (isAdminMode) {
-                if (confirm("Log out of Admin Mode?")) {
+                if (confirm("You are in Admin Mode. Do you want to log out?")) {
                     isAdminMode = false;
                     localStorage.removeItem('heyteck_admin_active');
                     updateAdminUI();
@@ -2073,30 +2100,41 @@
                 }
                 return;
             }
-            const pin = prompt("Enter HeyTeck Owner Admin PIN (Default: 4444):");
+            const pin = prompt("Enter Owner Admin PIN:");
             if (pin === '4444') {
                 isAdminMode = true;
                 localStorage.setItem('heyteck_admin_active', 'true');
-                alert("✅ Admin Mode Activated! You can now delete any comment or reply using the red 🗑️ Delete buttons.");
+                alert("⚡ Admin Mode Unlocked! You can now reply as Creator and delete any comment.");
                 updateAdminUI();
                 if (currentModalVideoId) renderComments(currentModalVideoId);
             } else if (pin !== null) {
-                alert("❌ Incorrect PIN. Access denied.");
+                alert("Incorrect PIN.");
             }
+        }
+
+        function toggleAdminPinModal() {
+            promptAdminLogin();
         }
 
         function updateAdminUI() {
             const btn = document.getElementById('adminLockBtn');
-            const txt = document.getElementById('adminStatusText');
-            if (!btn || !txt) return;
+            const creatorBtn = document.getElementById('creatorToggleBtn');
             if (isAdminMode) {
-                btn.classList.add('border-amber-500', 'bg-amber-500/20', 'text-amber-400');
-                btn.classList.remove('border-neutral-700', 'text-neutral-400');
-                txt.textContent = 'Admin Active ⚡';
+                if (btn) {
+                    btn.classList.remove('hidden');
+                    btn.classList.add('flex');
+                }
+                if (creatorBtn) {
+                    creatorBtn.classList.remove('hidden');
+                }
             } else {
-                btn.classList.remove('border-amber-500', 'bg-amber-500/20', 'text-amber-400');
-                btn.classList.add('border-neutral-700', 'text-neutral-400');
-                txt.textContent = 'Admin';
+                if (btn) {
+                    btn.classList.add('hidden');
+                    btn.classList.remove('flex');
+                }
+                if (creatorBtn) {
+                    creatorBtn.classList.add('hidden');
+                }
             }
         }
 
@@ -2495,6 +2533,21 @@
         // 5. INITIALIZE COUNTS & LISTENERS ON PAGE LOAD
         // ========================================================
         function initInteractions() {
+            // Secret keyword trigger in Name box (typing 'heyteck4444' activates admin immediately)
+            const nameField = document.getElementById('commenterName');
+            if (nameField) {
+                nameField.addEventListener('input', function() {
+                    if (this.value.trim().toLowerCase() === 'heyteck4444') {
+                        isAdminMode = true;
+                        localStorage.setItem('heyteck_admin_active', 'true');
+                        this.value = 'HeyTeck';
+                        updateAdminUI();
+                        if (currentModalVideoId) renderComments(currentModalVideoId);
+                        alert('⚡ Welcome HeyTeck! Admin Mode Activated.');
+                    }
+                });
+            }
+
             Object.keys(seedStats).forEach(videoId => {
                 const seed = seedStats[videoId];
                 const countSpan = document.getElementById('likes-' + videoId);
@@ -2636,15 +2689,16 @@
             <div class="px-5 py-4 border-b border-[#222634] flex items-center justify-between bg-[#11131a]">
                 <div class="flex-1 pr-3">
                     <div class="flex items-center gap-2 flex-wrap">
-                        <span class="text-base font-bold text-white tracking-wide">Comments</span>
+                        <!-- Secret Triple-Click on "Comments" Title unlocks Admin -->
+                        <span id="modalCommentsTitle" onclick="handleSecretAdminClick()" class="text-base font-bold text-white tracking-wide cursor-default select-none" title="Comments">Comments</span>
                         <span id="modalCommentCountBadge" class="bg-[#ffee00]/20 text-[#ffee00] text-xs font-bold px-2.5 py-0.5 rounded-full border border-[#ffee00]/30">0</span>
                         
-                        <!-- Owner Admin Lock / Deletion Mode Toggle Button -->
+                        <!-- 100% Hidden from public: Only shows for YOU when Admin is active -->
                         <button type="button" onclick="toggleAdminPinModal()" id="adminLockBtn"
-                            class="text-neutral-400 hover:text-amber-400 text-xs px-2.5 py-0.5 rounded-full border border-neutral-700 hover:border-amber-400/60 flex items-center gap-1 transition-all ml-1 cursor-pointer"
-                            title="Owner Admin Access (PIN: 4444)">
-                            <span>🔒</span>
-                            <span id="adminStatusText" class="text-[10px] font-bold">Admin</span>
+                            class="hidden text-amber-400 text-xs px-2.5 py-0.5 rounded-full border border-amber-500 bg-amber-500/20 items-center gap-1 transition-all ml-1 cursor-pointer"
+                            title="Admin Mode Active - Click to Logout">
+                            <span>⚡</span>
+                            <span id="adminStatusText" class="text-[10px] font-bold">Admin Active (Logout)</span>
                         </button>
                     </div>
                     <p id="modalVideoTitle" class="text-xs text-blue-400 font-medium truncate mt-0.5">Autumn Leather Mini Boots</p>
@@ -2683,8 +2737,8 @@
                         
                         <!-- Quick Creator Toggle -->
                         <button type="button" onclick="setCreatorMode()" id="creatorToggleBtn"
-                            class="bg-[#1c1f2b] hover:bg-[#282d3e] text-[10px] font-bold text-neutral-400 hover:text-[#5eead4] px-2.5 py-2 rounded-xl border border-[#2a2f42] whitespace-nowrap transition-colors"
-                            title="Click to quickly reply as HeyTeck Creator">
+                            class="hidden bg-[#1c1f2b] hover:bg-[#282d3e] text-[10px] font-bold text-[#5eead4] px-2.5 py-2 rounded-xl border border-[#2a2f42] whitespace-nowrap transition-colors"
+                            title="Reply as HeyTeck Creator">
                             ⚡ As HeyTeck
                         </button>
                     </div>
