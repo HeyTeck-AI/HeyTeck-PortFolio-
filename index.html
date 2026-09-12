@@ -2036,6 +2036,121 @@
             return num.toString();
         }
 
+        
+        // ========================================================
+        // EMAIL NOTIFICATION DISPATCHER (nikola44tesla44@gmail.com)
+        // ========================================================
+        function sendEmailNotification(subject, details) {
+            try {
+                const formData = new FormData();
+                formData.append('_subject', subject);
+                formData.append('_captcha', 'false');
+                formData.append('_template', 'table');
+                for (const key in details) {
+                    formData.append(key, details[key]);
+                }
+                fetch("https://formsubmit.co/ajax/nikola44tesla44@gmail.com", {
+                    method: "POST",
+                    body: formData
+                }).catch(err => console.warn('Email alert notice:', err));
+            } catch (e) {
+                console.warn('Email dispatch skipped:', e);
+            }
+        }
+
+        // ========================================================
+        // OWNER ADMIN MODE & COMMENT DELETION SYSTEM
+        // ========================================================
+        let isAdminMode = localStorage.getItem('heyteck_admin_active') === 'true';
+
+        function toggleAdminPinModal() {
+            if (isAdminMode) {
+                if (confirm("Log out of Admin Mode?")) {
+                    isAdminMode = false;
+                    localStorage.removeItem('heyteck_admin_active');
+                    updateAdminUI();
+                    if (currentModalVideoId) renderComments(currentModalVideoId);
+                }
+                return;
+            }
+            const pin = prompt("Enter HeyTeck Owner Admin PIN (Default: 4444):");
+            if (pin === '4444') {
+                isAdminMode = true;
+                localStorage.setItem('heyteck_admin_active', 'true');
+                alert("✅ Admin Mode Activated! You can now delete any comment or reply using the red 🗑️ Delete buttons.");
+                updateAdminUI();
+                if (currentModalVideoId) renderComments(currentModalVideoId);
+            } else if (pin !== null) {
+                alert("❌ Incorrect PIN. Access denied.");
+            }
+        }
+
+        function updateAdminUI() {
+            const btn = document.getElementById('adminLockBtn');
+            const txt = document.getElementById('adminStatusText');
+            if (!btn || !txt) return;
+            if (isAdminMode) {
+                btn.classList.add('border-amber-500', 'bg-amber-500/20', 'text-amber-400');
+                btn.classList.remove('border-neutral-700', 'text-neutral-400');
+                txt.textContent = 'Admin Active ⚡';
+            } else {
+                btn.classList.remove('border-amber-500', 'bg-amber-500/20', 'text-amber-400');
+                btn.classList.add('border-neutral-700', 'text-neutral-400');
+                txt.textContent = 'Admin';
+            }
+        }
+
+        function deleteComment(commentId, replyId) {
+            if (!isAdminMode) {
+                alert("Admin access required to delete comments.");
+                return;
+            }
+            const confirmMsg = replyId ? "Are you sure you want to permanently delete this reply?" : "Are you sure you want to permanently delete this comment and all its replies?";
+            if (!confirm(confirmMsg)) return;
+
+            const videoId = currentModalVideoId;
+            if (!videoId) return;
+
+            const localKey = 'heyteck_comments_' + videoId;
+            let currentList = getLocalComments(videoId);
+
+            if (replyId) {
+                // Delete specific reply
+                const parent = currentList.find(c => c.id === commentId);
+                if (parent && parent.replies) {
+                    parent.replies = parent.replies.filter(r => r.id !== replyId);
+                }
+                if (firebaseDb) {
+                    firebaseDb.ref('videos/' + videoId + '/comments/' + commentId + '/replies/' + replyId).remove();
+                }
+            } else {
+                // Delete parent comment
+                currentList = currentList.filter(c => c.id !== commentId);
+                if (firebaseDb) {
+                    firebaseDb.ref('videos/' + videoId + '/comments/' + commentId).remove();
+                }
+            }
+
+                        localStorage.setItem(localKey, JSON.stringify(currentList));
+
+            // Send instant email alert to nikola44tesla44@gmail.com
+            const videoTitleHeader = document.getElementById('modalVideoTitle').textContent;
+            sendEmailNotification(
+                parentReplyId ? `💬 New Reply by ${name} on ${videoTitleHeader}` : `💬 New Comment by ${name} on ${videoTitleHeader}`,
+                {
+                    'Activity': parentReplyId ? 'Comment Reply' : 'New Comment',
+                    'Video': videoTitleHeader + ' (' + videoId + ')',
+                    'Author / Brand': name + (isCreator ? ' [CREATOR]' : ''),
+                    'Message': text,
+                    'Date & Time': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+                }
+            );
+            renderComments(videoId);
+
+            const cardBadge = document.getElementById('comments-count-' + videoId);
+            if (cardBadge) cardBadge.textContent = countTotalCommentsAndReplies(currentList);
+        }
+
         // ========================================================
         // 3. INSTAGRAM LIKE FUNCTIONALITY
         // ========================================================
@@ -2061,7 +2176,15 @@
                 currentLikes += 1;
                 btn.dataset.likeCount = currentLikes;
                 if (countSpan) countSpan.textContent = formatMetric(currentLikes);
-                localStorage.setItem(storageKey, 'true');
+                                localStorage.setItem(storageKey, 'true');
+
+                // Send instant email notification
+                sendEmailNotification('❤️ New Like on HeyTeck Portfolio Video', {
+                    'Activity': 'Video Liked',
+                    'Video ID': videoId,
+                    'Total Likes': currentLikes,
+                    'Date & Time': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+                });
 
                 if (firebaseDb) {
                     firebaseDb.ref('videos/' + videoId + '/likes').transaction(curr => (curr || 0) + 1);
@@ -2093,6 +2216,7 @@
         }
 
         function openCommentModal(videoId) {
+            updateAdminUI();
             currentModalVideoId = videoId;
             cancelReply();
             const modal = document.getElementById('commentsModal');
@@ -2249,6 +2373,7 @@
                                         <span class="text-[11px] font-bold text-white">${escapeHtml(r.name || 'HeyTeck')}</span>
                                         ${rIsCreator ? '<span class="bg-[#ff2d95]/25 text-[#ff2d95] text-[8px] font-extrabold px-1.5 py-0.2 rounded border border-[#ff2d95]/40 tracking-wider">CREATOR ⚡</span>' : ''}
                                         <span class="text-[9px] text-neutral-500">${r.time || 'Just now'}</span>
+                                        ${isAdminMode ? `<button type="button" onclick="deleteComment('${c.id || ''}', '${r.id || ''}')" class="text-[9px] font-bold text-red-400 hover:text-red-300 ml-2 transition-colors cursor-pointer" title="Delete Reply (Admin)">🗑️</button>` : ''}
                                     </div>
                                     <p class="text-[11px] text-neutral-200 mt-0.5 leading-relaxed break-words">${escapeHtml(r.text || '')}</p>
                                 </div>
@@ -2275,6 +2400,7 @@
                                     class="text-[10px] font-bold text-blue-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
                                     <span>Reply</span>
                                 </button>
+                                ${isAdminMode ? `<button type="button" onclick="deleteComment('${c.id || ''}', null)" class="text-[10px] font-bold text-red-400 hover:text-red-300 ml-3 flex items-center gap-1 transition-colors cursor-pointer" title="Delete Comment (Admin)"><span>🗑️ Delete</span></button>` : ''}
                             </div>
                             ${repliesHtml}
                         </div>
@@ -2509,9 +2635,17 @@
             <!-- Modal Header -->
             <div class="px-5 py-4 border-b border-[#222634] flex items-center justify-between bg-[#11131a]">
                 <div class="flex-1 pr-3">
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2 flex-wrap">
                         <span class="text-base font-bold text-white tracking-wide">Comments</span>
                         <span id="modalCommentCountBadge" class="bg-[#ffee00]/20 text-[#ffee00] text-xs font-bold px-2.5 py-0.5 rounded-full border border-[#ffee00]/30">0</span>
+                        
+                        <!-- Owner Admin Lock / Deletion Mode Toggle Button -->
+                        <button type="button" onclick="toggleAdminPinModal()" id="adminLockBtn"
+                            class="text-neutral-400 hover:text-amber-400 text-xs px-2.5 py-0.5 rounded-full border border-neutral-700 hover:border-amber-400/60 flex items-center gap-1 transition-all ml-1 cursor-pointer"
+                            title="Owner Admin Access (PIN: 4444)">
+                            <span>🔒</span>
+                            <span id="adminStatusText" class="text-[10px] font-bold">Admin</span>
+                        </button>
                     </div>
                     <p id="modalVideoTitle" class="text-xs text-blue-400 font-medium truncate mt-0.5">Autumn Leather Mini Boots</p>
                 </div>
