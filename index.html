@@ -342,79 +342,10 @@
 
             <!-- ========================================== -->
             <!-- CATEGORY 1: FASHION UGC (4 VIDEOS) -->
-            <!-- Sequence: 1. Mini Boots, 2. Diamond, 3. Sneakers, 4. Blazer -->
+            <!-- Sequence: 1. Diamond, 2. Sneakers, 3. Blazer, 4. Clothes -->
             <!-- ========================================== -->
 
-            <!-- VIDEO 1: MINI BOOTS -->
-            <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
-                <div>
-                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
-                        <video playsinline preload="none" poster="fashion_boots_poster.jpg">
-                            <source src="fashion_boots.mp4" type="video/mp4">
-                        </video>
-                        <div class="thumb-overlay">
-                            <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-amber-700/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-amber-500/60 shadow-lg animate-pulse">
-                                    👢 53.8% BOOT REVEAL
-                                </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
-                                    ★★★★★ 4.9
-                                </span>
-                            </div>
-                            <div class="self-center pointer-events-none my-auto">
-                                <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 👢 Autumn Chic Fit
-                                </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
-                            </div>
-                        </div>
-                    
-                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
-                        <div class="insta-actions" data-video-id="fashion_boots">
-                            <!-- Heart Like Button -->
-                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'fashion_boots')" title="Like this creative">
-                                <div class="insta-icon-bubble">
-                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                    </svg>
-                                </div>
-                                <span class="insta-label like-count" id="likes-fashion_boots">0</span>
-                            </button>
-
-                            <!-- Comment Bubble Button -->
-                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'fashion_boots')" title="View & Add Comments">
-                                <div class="insta-icon-bubble">
-                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                                    </svg>
-                                </div>
-                                <span class="insta-label comment-count" id="comments-count-fashion_boots">0</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between mb-1.5">
-                        <span class="text-[11px] font-semibold text-blue-400">LuxeFootwear</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Autumn Leather Mini Boots Styling">Autumn Leather Mini Boots Styling</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ Leather Texture Macro • 360° Fit Look">
-                        ⚡ Leather Texture Macro • 360° Fit Look
-                    </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: 'Must-Have Autumn Boot Styling'">
-                        🔥 Hook: 'Must-Have Autumn Boot Styling'
-                    </div>
-                </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
-                    📈 Thumb-Stop: 53.8% | ROAS: 5.2x
-                </div>
-            </div>
-
-            <!-- VIDEO 2: DIAMOND JEWELRY -->
+            <!-- VIDEO 1: DIAMOND JEWELRY -->
             <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
@@ -483,7 +414,7 @@
                 </div>
             </div>
 
-            <!-- VIDEO 3: SNEAKERS -->
+            <!-- VIDEO 2: SNEAKERS -->
             <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
@@ -552,7 +483,7 @@
                 </div>
             </div>
 
-            <!-- VIDEO 4: BLAZER -->
+            <!-- VIDEO 3: BLAZER -->
             <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
@@ -621,9 +552,78 @@
                 </div>
             </div>
 
+            <!-- VIDEO 4: CLOTHES -->
+            <div class="portfolio-card item-fashion bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between">
+                <div>
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="fashion_clothes_poster.jpg">
+                            <source src="fashion_clothes.mp4" type="video/mp4">
+                        </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-pink-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-pink-400/60 shadow-lg animate-pulse">
+                                    👗 49.8% VIRAL FIT
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 4.9
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🔥 GRWM Try-On Look
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
+                            </div>
+                        </div>
+
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
+                        <div class="insta-actions" data-video-id="fashion_clothes">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'fashion_clothes')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-fashion_clothes">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'fashion_clothes')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-fashion_clothes">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="text-[11px] font-semibold text-blue-400">Aura Studio</span>
+                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">FASHION</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Summer Ribbed Corset Top Try-On">Summer Ribbed Corset Top Try-On</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ GRWM Fit Check • Style &amp; Outfit Inspo">
+                        ⚡ GRWM Fit Check • Style &amp; Outfit Inspo
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: 'Stop Scrolling If You Want This Fit'">
+                        🔥 Hook: 'Stop Scrolling If You Want This Fit'
+                    </div>
+                </div>
+                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                    📈 Thumb-Stop: 49.8% | ROAS: 4.7x
+                </div>
+            </div>
+
             <!-- ========================================== -->
             <!-- CATEGORY 2: BEAUTY UGC (4 VIDEOS) -->
-            <!-- Sequence: 1. Cetaphil, 2. Shampoo, 3. Minimalist, 4. Perfume -->
+            <!-- Sequence: 1. Cetaphil, 2. Minimalist, 3. Perfume, 4. Shampoo -->
             <!-- ========================================== -->
 
             <!-- VIDEO 1: CETAPHIL -->
@@ -695,76 +695,7 @@
                 </div>
             </div>
 
-            <!-- VIDEO 2: SHAMPOO -->
-            <div class="portfolio-card item-beauty bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
-                <div>
-                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
-                        <video playsinline preload="none" poster="beauty_shampoo_poster.jpg">
-                            <source src="beauty_shampoo.mp4" type="video/mp4">
-                        </video>
-                        <div class="thumb-overlay">
-                            <div class="flex items-center justify-between pointer-events-none">
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-teal-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-teal-400/60 shadow-lg animate-pulse">
-                                    ✨ 52.1% SILKY LATHER
-                                </span>
-                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
-                                    ★★★★★ 4.9
-                                </span>
-                            </div>
-                            <div class="self-center pointer-events-none my-auto">
-                                <div class="play-btn-glow">
-                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between text-white pointer-events-none">
-                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🫧 Foam Texture ASMR
-                                </span>
-                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
-                            </div>
-                        </div>
-                    
-                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
-                        <div class="insta-actions" data-video-id="beauty_shampoo">
-                            <!-- Heart Like Button -->
-                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'beauty_shampoo')" title="Like this creative">
-                                <div class="insta-icon-bubble">
-                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                    </svg>
-                                </div>
-                                <span class="insta-label like-count" id="likes-beauty_shampoo">0</span>
-                            </button>
-
-                            <!-- Comment Bubble Button -->
-                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'beauty_shampoo')" title="View & Add Comments">
-                                <div class="insta-icon-bubble">
-                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                                    </svg>
-                                </div>
-                                <span class="insta-label comment-count" id="comments-count-beauty_shampoo">0</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between mb-1.5">
-                        <span class="text-[11px] font-semibold text-blue-400">Botanical Hair</span>
-                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
-                    </div>
-                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Volumizing Hair Cleansing &amp; Lather Routine">Volumizing Hair Cleansing &amp; Lather Routine</h3>
-                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ Ultra-Foam Lather • Scalp Refresh ASMR">
-                        ⚡ Ultra-Foam Lather • Scalp Refresh ASMR
-                    </div>
-                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: Salon-Quality Hair Wash At Home">
-                        🔥 Hook: Salon-Quality Hair Wash At Home
-                    </div>
-                </div>
-                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
-                    📈 Thumb-Stop: 52.1% | ROAS: 4.9x
-                </div>
-            </div>
-
-            <!-- VIDEO 3: MINIMALIST -->
+            <!-- VIDEO 2: MINIMALIST -->
             <div class="portfolio-card item-beauty bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
@@ -804,7 +735,7 @@
                                 </div>
                                 <span class="insta-label like-count" id="likes-beauty_minimalist">0</span>
                             </button>
-
+ 
                             <!-- Comment Bubble Button -->
                             <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'beauty_minimalist')" title="View & Add Comments">
                                 <div class="insta-icon-bubble">
@@ -833,7 +764,7 @@
                 </div>
             </div>
 
-            <!-- VIDEO 4: PERFUME -->
+            <!-- VIDEO 3: PERFUME -->
             <div class="portfolio-card item-beauty bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
                 <div>
                     <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
@@ -899,6 +830,75 @@
                 </div>
                 <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
                     📈 Thumb-Stop: 54.6% | ROAS: 5.3x
+                </div>
+            </div>
+
+            <!-- VIDEO 4: SHAMPOO -->
+            <div class="portfolio-card item-beauty bg-[#13151c] border border-[#222634] rounded-2xl p-3.5 flex flex-col justify-between" style="display: none;">
+                <div>
+                    <div class="video-wrapper mb-3" onclick="toggleUgcPlay(this)">
+                        <video playsinline preload="none" poster="beauty_shampoo_poster.jpg">
+                            <source src="beauty_shampoo.mp4" type="video/mp4">
+                        </video>
+                        <div class="thumb-overlay">
+                            <div class="flex items-center justify-between pointer-events-none">
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-teal-600/90 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full border border-teal-400/60 shadow-lg animate-pulse">
+                                    ✨ 52.1% SILKY LATHER
+                                </span>
+                                <span class="ctr-badge inline-flex items-center gap-1 bg-black/75 text-[#ffee00] font-bold text-[11px] px-2.5 py-1 rounded-full border border-[#ffee00]/40">
+                                    ★★★★★ 4.9
+                                </span>
+                            </div>
+                            <div class="self-center pointer-events-none my-auto">
+                                <div class="play-btn-glow">
+                                    <svg class="w-7 h-7 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-white pointer-events-none">
+                                <span class="ctr-badge bg-black/80 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/15 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 🫧 Foam Texture ASMR
+                                </span>
+                                <span class="ctr-badge bg-black/80 text-[10px] font-bold px-2 py-1 rounded-lg border border-white/15 text-neutral-300">4K HD</span>
+                            </div>
+                        </div>
+                    
+                        <!-- Instagram-Style Actions (Direct child of video-wrapper, revealed on video tap) -->
+                        <div class="insta-actions" data-video-id="beauty_shampoo">
+                            <!-- Heart Like Button -->
+                            <button type="button" class="insta-btn like-btn" onclick="handleLikeClick(event, 'beauty_shampoo')" title="Like this creative">
+                                <div class="insta-icon-bubble">
+                                    <svg class="heart-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label like-count" id="likes-beauty_shampoo">0</span>
+                            </button>
+
+                            <!-- Comment Bubble Button -->
+                            <button type="button" class="insta-btn comment-btn" onclick="handleCommentClick(event, 'beauty_shampoo')" title="View & Add Comments">
+                                <div class="insta-icon-bubble">
+                                    <svg class="comment-svg w-5 h-5 text-white transition-all duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                                    </svg>
+                                </div>
+                                <span class="insta-label comment-count" id="comments-count-beauty_shampoo">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="text-[11px] font-semibold text-blue-400">Botanical Hair</span>
+                        <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-1.5 py-0.5 rounded-md border border-blue-500/20">BEAUTY</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2 leading-snug truncate" title="Volumizing Hair Cleansing &amp; Lather Routine">Volumizing Hair Cleansing &amp; Lather Routine</h3>
+                    <div class="bg-[#ffee00]/10 border border-[#ffee00]/30 text-[#ffee00] text-xs p-2 rounded-lg mb-2 font-medium truncate" title="⚡ Ultra-Foam Lather • Scalp Refresh ASMR">
+                        ⚡ Ultra-Foam Lather • Scalp Refresh ASMR
+                    </div>
+                    <div class="bg-[#ff2d95]/10 border border-[#ff2d95]/30 text-[#ff2d95] text-[11px] font-semibold p-2 rounded-lg mb-2 truncate" title="🔥 Hook: Salon-Quality Hair Wash At Home">
+                        🔥 Hook: Salon-Quality Hair Wash At Home
+                    </div>
+                </div>
+                <div class="bg-emerald-950/40 border border-emerald-500/40 text-emerald-400 text-xs font-bold p-2 rounded-xl text-center mt-2">
+                    📈 Thumb-Stop: 52.1% | ROAS: 4.9x
                 </div>
             </div>
 
@@ -1991,13 +1991,13 @@
 
         // Initial Seed Comments with Creator Replies
         const seedStats = {
-            fashion_boots: { likes: 148, comments: [
-                { id: "c1", name: "Siddharth (Brand Lead)", text: "The leather macro texture shot is insane! Converting high.", time: "2h ago",
+            fashion_clothes: { likes: 148, comments: [
+                { id: "c1", name: "Siddharth (Brand Lead)", text: "The fit check pacing and styling transitions are insane! Converting high.", time: "2h ago",
                   replies: [
-                      { id: "r1", name: "HeyTeck", isCreator: true, text: "Thanks bro! Handled lighting specifically for direct-response thumbstop 🔥", time: "1h ago" }
+                      { id: "r1", name: "HeyTeck", isCreator: true, text: "Thanks bro! Handled lighting and rhythm specifically for direct-response thumbstop 🔥", time: "1h ago" }
                   ]
                 },
-                { id: "c2", name: "Ananya M.", text: "Love the Autumn color palette. What camera was used?", time: "5h ago",
+                { id: "c2", name: "Ananya M.", text: "Love the vibrant aesthetic. What camera was used?", time: "5h ago",
                   replies: [
                       { id: "r2", name: "HeyTeck", isCreator: true, text: "Shot on Sony FX3 with anamorphic grade!", time: "3h ago" }
                   ]
@@ -3029,7 +3029,7 @@
                             <span id="adminStatusText" class="text-[10px] font-bold">Admin Active (Logout)</span>
                         </button>
                     </div>
-                    <p id="modalVideoTitle" class="text-xs text-blue-400 font-medium truncate mt-0.5">Autumn Leather Mini Boots</p>
+                    <p id="modalVideoTitle" class="text-xs text-blue-400 font-medium truncate mt-0.5">Summer Ribbed Corset Top Try-On</p>
                 </div>
                 <button onclick="closeCommentModal()" class="w-8 h-8 rounded-full bg-[#1c1f2b] hover:bg-[#2a2f42] text-neutral-400 hover:text-white flex items-center justify-center transition-colors">
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
